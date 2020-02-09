@@ -12,7 +12,11 @@ int main(){
     case (IDLE):
     case (MOVE):
     case (EMERGENCY_STOP):
-    case (DOOR_OPEN)
+      if (hardware_read_stop_signal()) {
+          hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+
+      }
+    case (DOOR_OPEN):
   }
 
 
