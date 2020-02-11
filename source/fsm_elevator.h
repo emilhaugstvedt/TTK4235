@@ -1,12 +1,12 @@
 #ifndef FSM_ELEVATOR_H
 #define FSM_ELEVATOR_H
 
-typedef enum {
+typedef enum states{
   IDLE,
   MOVE,
   EMERGENCY_STOP,
   DOOR_OPEN
-} State;
+} state_t;
 //
 // void move_state(Elevator e);
 //
