@@ -1,4 +1,4 @@
-SOURCES := main.c elevator.c
+SOURCES := main.c elevator.c timer.c queue_handler.c fsm_elevator.c elevator.c elevator_driver.c
 
 SOURCE_DIR := source
 BUILD_DIR := build
