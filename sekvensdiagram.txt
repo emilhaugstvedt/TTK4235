@@ -1,0 +1,29 @@
+Sekvensdiagram:
+
+	Precondition:
+	Heis i ro klar for å motta bestilling
+	
+	Trigger:
+	Heis mottar bestilling
+
+	Suksess-scenario:
+	1. Heis kjører til etasjen med bestilling
+	2. Dørene åpnes
+	3. Heisen mottar bestilling om ønsket etasje
+	4. Dørene lukkes.
+	5. Heisen drar til ønsket etasje.
+	6. Dørene åpnes og lukkes og den er klar for ny bestilling.
+
+	Utvidelse:
+	1. Nødstopp trykket
+	2a. Heisen er i ro?
+		3. Dørene åpnes
+		4. Dørene lukkes 3 sek etter nødstopp sluppet.
+	2b. Heisen i bevegelse?
+		3. Heisen stopper
+		4. Slette alle ubetjente bestillinger.
+		5. Fullføre turen. 
+
+	Garanti:
+	Heisen står i ro.
+	
