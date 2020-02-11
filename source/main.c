@@ -7,6 +7,8 @@ typedef enum {IDLE, MOVE, EMERGENCY_STOP, DOOR_OPEN} State;
 
 
 int main(){
+  int default_floor = 0;
+  go_to_default(default_floor);
 
   switch (State s) {
     case (IDLE):
@@ -43,7 +45,7 @@ int main(){
           hardware_command_door_open(1);
           sleep(3);
           hardware_command_movement(HARDWARE_MOVEMENT_UP);
-          x = 1;
+
         }
 
         if(hardware_read_floor_sensor(0)){
