@@ -6,5 +6,16 @@
 #include "timer.h"
 
 void set_engine(elevator_t *e) {
-    hardware_command_movement(e->current_dir);
+    switch (e->current_state)
+    {
+    case MOVE:
+        set_engine(e);
+        break;
+    case IDLE:
+    case DOOR_OPEN:
+    case EMERGENCY_STOP:
+
+    default:
+        break;
+    }
 }
