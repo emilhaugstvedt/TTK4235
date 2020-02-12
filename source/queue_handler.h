@@ -12,6 +12,5 @@ void clear_queue(elevator_t *e);
  */
 void update_queue(elevator_t *e);
 
-void clear_queue(elevator_t *e);
 
 #endif

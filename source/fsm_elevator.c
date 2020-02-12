@@ -5,22 +5,22 @@
 #include "queue_handler.h"
 #include "timer.h"
 
-void elevator_go(Elevator e){
+void elevator_go(elevator_t *e){
   int default_floor = 0;
   go_to_default(default_floor);
   while(1){
-    switch (e.current_state) {
+    switch (e->current_state) {
       case MOVE:
-        move_state(Elevator e);
+        move_state(e);
 
       case IDLE:
-        idle_state(Elevato);
+        idle_state(e);
 
       case EMERGENCY_STOP:
-        emergency_state();
+        emergency_state(e);
 
       case DOOR_OPEN:
-        door_state();
+        door_state(e);
     }
   }
 };
@@ -43,6 +43,9 @@ void emergency_state(elevator_t *e) {
     }
 }
 
-void door_state(elevator_t e) {
+void door_state(elevator_t *e) {
+    if (!hardware_read_stop_signal() && e->current_state == EMERGENCY_STOP){
 
-}}
+    }
+
+}
