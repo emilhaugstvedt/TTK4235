@@ -19,3 +19,7 @@ void set_engine(elevator_t *e) {
         break;
     }
 }
+
+void go_to_floor(elevator_t *e) {
+    if (e->current_floor < e)
+}
