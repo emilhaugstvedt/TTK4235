@@ -14,7 +14,6 @@ void clear_queue(elevator_t *e){
 }
 
 void update_queue(elevator_t *e){
-    if (e->allow_order_search){
         if (hardware_read_order(0, HARDWARE_ORDER_UP)){
             e->queue[0][ORDER_UP] = 1;
             hardware_command_order_light(0, HARDWARE_ORDER_UP, 1);
@@ -39,26 +38,28 @@ void update_queue(elevator_t *e){
             e->queue[3][ORDER_DOWN] = 1;
             hardware_command_order_light(3, HARDWARE_ORDER_DOWN, 1);
         }
-    }
-}
+      }
 
-// //void execute_order(elevator_t *e){
-//     // Oppdaterer køen før hver kjøring og endrer rekkefølge etter hva som er i den retningen vi skal.
-//     // order 1: 1. etasje opp -> skal til 4. etasje
-//     // order 2: 2. etasje ned
-//     // order 3: 2. etasje opp
-//     // order 4: 3. etasje ned
-//     // [1,2,3,4,0,0] -> alle bestillingene i køen
-//     // kjører orderen og endrer da køen slik at den ser slik ut:
-//     // [3,2,4,0,0,0] -> Fordi bestilling 3 er på veien.
-//
-// }
-//
-// //int get_order_floor(elevator_t *e, int floor, int dir) {
-//     if (e->queue[floor][dir] == 1) {
-//         e->current_dir = 1;
-//     }
-//
-// //order_t order_queue(elevator_t *e) {
-//
-// }
+
+
+
+void choose_direction(elevator_t *e){
+    if (e->current_dir == 1 ) {
+      e->current_dir = 0;
+      for (int floor = 0 + e->current_floor; floor < QUEUE_FLOOR; floor ++) {
+        if (e->queue[floor][ORDER_UP] == 1) {
+          e->current_dir = 1;
+
+      }
+    }
+    if (e->current_dir == 0) {
+      e->current_dir = 1; {
+        for (int floor = e->current_floor; floor > 0; floor--){
+          if (e->queue[floor][ORDER_DOWN] == 0) {
+            e->current_dir = 0;
+          }
+        }
+      }
+    }
+  }
+}

@@ -18,9 +18,7 @@ void clear_queue(elevator_t *e);
  */
 void update_queue(elevator_t *e);
 
-int get_next_order(elevator_t *e);
-
-order_t order_queue(elevator_t *e);
+void choose_direction(elevator_t *e);
 
 
 #endif
