@@ -16,6 +16,7 @@ typedef struct elevator {
   state_t current_state;
   state_t last_state;
   int current_floor;
+  int last_floor;
   int queue[QUEUE_FLOOR][QUEUE_ORDERS];
 //order_t order_queue[MAX_ORDER_AMOUNT];
   HardwareMovement current_dir;
