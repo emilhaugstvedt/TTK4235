@@ -7,7 +7,7 @@
 #define MAX_ORDER_AMOUNT 6
 #include "hardware.h"
 #include "fsm_elevator.h"
-
+#include <time.h>
 
 /**
  * @brief Struct that describes the elevator. It contains all the important variables for the process
@@ -21,6 +21,7 @@ typedef struct elevator {
 //order_t order_queue[MAX_ORDER_AMOUNT];
   HardwareMovement current_dir;
   int allow_order_search;
+  time_t time;
 } elevator_t;
 
 #endif

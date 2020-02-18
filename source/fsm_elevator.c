@@ -4,7 +4,7 @@
 #include "elevator_driver.h"
 #include "queue_handler.h"
 #include "timer.h"
-#define DEFAULT_FLOOR 1
+#define DEFAULT_FLOOR 0
 
 void elevator_go(elevator_t *e){
   go_to_default(DEFAULT_FLOOR);
@@ -23,11 +23,11 @@ void elevator_go(elevator_t *e){
         door_state(e);
     }
   }
-};
+}
 
 
 void move_state(elevator_t *e) {
-    update_queue(e);
+    queue_handler_update_queue(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
@@ -41,7 +41,7 @@ void move_state(elevator_t *e) {
 }
 
 void idle_state(elevator_t *e) {
-    update_queue(e);
+    queue_handler_update_queue(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
@@ -61,7 +61,7 @@ void emergency_state(elevator_t *e) {
             e->last_state = EMERGENCY_STOP;
             e->current_state = IDLE;
         }
-        else if (e->last_state == IDLE) {
+        else if (e->last_state == IDLE){
             e->last_state = e->current_state;
             e->current_state = DOOR_OPEN;
         }
@@ -69,9 +69,9 @@ void emergency_state(elevator_t *e) {
 }
 
 void door_state(elevator_t *e) {
-    update_queue(e);
+    queue_handler_update_queue(e);
     if (!hardware_read_stop_signal() && e->current_state == EMERGENCY_STOP){
-        
+
     }
 }
 
@@ -79,5 +79,5 @@ void go_to_default(elevator_t *e) {
     if (hardware_read_floor_sensor(DEFAULT_FLOOR)){
         e->current_floor = IDLE;
     }
-    
+
 }

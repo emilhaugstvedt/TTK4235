@@ -35,9 +35,9 @@ hardware_command_order_light(2, HARDWARE_ORDER_UP, 0);
 elevator_t elev;
 elevator_t *e = &elev;
 while(1){
-update_queue(e);
+queue_handler_update_queue(e);
 if (e->queue[0][ORDER_UP] == 1){
-  run_do_do_do_do_do_do(e);
+  elevator_driver_go(e);
 }
 if(hardware_read_stop_signal()) {
   break;
