@@ -17,7 +17,7 @@ time_t timer_start_time(){
   return time(NULL);
 }
 
-int timer_time_out(time_t start_time){
+int timer_wait_for_three(time_t start_time){
   time_t temp_time = time(NULL);
   if (temp_time - start_time >= 3){
     return 1;

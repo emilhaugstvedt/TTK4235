@@ -33,6 +33,6 @@ void door_state(elevator_t *e);
  * @brief The main fsm function that makes the elevator work. It contains a switch and switches between the differnt functions
  * according to the elevators current state.
  */
-void elevator_go(elevator_t *e);
+void fsm_elevator_go(elevator_t *e);
 
 #endif

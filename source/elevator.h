@@ -28,6 +28,7 @@ typedef struct {
   int last_floor;
   int queue[QUEUE_FLOOR][QUEUE_ORDERS];
   HardwareMovement current_dir;
+  HardwareMovement next_dir;
   int allow_order_search;
   time_t time;
 } elevator_t;

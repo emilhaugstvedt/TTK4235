@@ -24,6 +24,9 @@ void queue_handler_choose_direction(elevator_t *e);
  */
 void queue_handler_order_complete(elevator_t *e);
 
+/**
+ * @brief Function that sets the floor for det next order.
+ */
 void queue_handler_set_floor(elevator_t *e);
 
 

@@ -28,12 +28,13 @@ elevator_t elev;
 elevator_t *e = &elev;
 elevator_driver_init_floor(e);
 e->current_state = IDLE;
+e->current_dir = HARDWARE_MOVEMENT_STOP;
 for(int floor = 0; floor < 4; floor++) {
   for (int order = 0; order < 2; order ++) {
     e->queue[floor][order] = 0;
   }
 }
-elevator_go(e);
+fsm_elevator_go(e);
 for(int floor = 0; floor < 4; floor++) {
   for (int order = 0; order < 2; order ++) {
     printf("%d \n", e->queue[floor][order]);

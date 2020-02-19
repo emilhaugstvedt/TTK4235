@@ -49,6 +49,7 @@ void queue_handler_update_queue(elevator_t *e){
 
 void queue_handler_choose_direction(elevator_t *e){
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
+    e->current_dir = HARDWARE_MOVEMENT_DOWN;
     for (int floor = e->current_floor; floor < QUEUE_FLOOR; floor++) {
       if (e->queue[floor][ORDER_UP]){
         e->current_dir = HARDWARE_ORDER_UP;
@@ -59,34 +60,49 @@ void queue_handler_choose_direction(elevator_t *e){
     }
   }
   if (e->current_dir == HARDWARE_MOVEMENT_DOWN) {
+    e->current_dir = HARDWARE_MOVEMENT_UP;
     for (int floor = e->current_floor; floor >= 0; floor--) {
-      if (e->queue[floor][ORDER_UP]){
-        e->current_dir = HARDWARE_ORDER_UP;
+      if (e->queue[floor][ORDER_DOWN]){
+        e->current_dir = HARDWARE_ORDER_DOWN;
+        e->next_dir = HARDWARE_MOVEMENT_DOWN;
       }
       else {
         e->current_dir = HARDWARE_MOVEMENT_STOP;
       }
 }
+}
   if (e->current_dir == HARDWARE_MOVEMENT_STOP){
     for (int floor = 0; floor < 4; floor++) {
-      if (e->queue[floor][ORDER_UP] || e->queue[floor][ORDER_DOWN]){
-        if(floor > e->current_floor){
+      if (e->queue[floor][ORDER_UP]){
+        if(floor > e->last_floor){
           e->current_dir = HARDWARE_MOVEMENT_UP;
+          e->next_dir = HARDWARE_MOVEMENT_UP;
         }
-        else if(floor < e->current_floor){
+        else if(floor < e->last_floor){
           e->current_dir = HARDWARE_MOVEMENT_DOWN;
+          e->next_dir = HARDWARE_MOVEMENT_UP;
           }
         }
+        if (e->queue[floor][ORDER_DOWN]){
+          if(floor > e->last_floor){
+            e->current_dir = HARDWARE_MOVEMENT_UP;
+            e->next_dir = HARDWARE_ORDER_DOWN;
+          }
+          else if(floor < e->last_floor){
+            e->current_dir = HARDWARE_MOVEMENT_DOWN;
+            e->next_dir = HARDWARE_ORDER_DOWN;
+            }
+          }
       }
     }
   }
-}
 
 
 void queue_handler_set_floor(elevator_t *e) {
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
     for (int floor = 3; floor > e->current_floor; floor--) {
       if (e->queue[floor][ORDER_UP]){
+        e->last_floor = e->current_floor;
         e->current_floor = floor;
       }
       else {
@@ -97,21 +113,23 @@ void queue_handler_set_floor(elevator_t *e) {
   if (e->current_dir == HARDWARE_MOVEMENT_DOWN) {
     for (int floor = 0; floor > e->current_floor; floor++) {
       if (e->queue[floor][ORDER_UP]){
+        e->last_floor = e->current_floor;
         e->current_floor = floor;
       }
       else {
         e->current_dir = HARDWARE_MOVEMENT_STOP;
       }
 }
+}
   if (e->current_dir == HARDWARE_MOVEMENT_STOP){
     for (int floor = 0; floor < 4; floor++) {
       if (e->queue[floor][ORDER_UP] || e->queue[floor][ORDER_DOWN]){
+        e->last_floor = e->current_floor;
           e->current_floor = floor;
           }
         }
       }
     }
-  }
 
 void queue_handler_order_complete(elevator_t *e){
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
