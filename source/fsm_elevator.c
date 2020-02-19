@@ -1,9 +1,9 @@
-#include "elevator.h"
-#include "fsm_elevator.h"
-#include "hardware.h"
 #include "elevator_driver.h"
 #include "queue_handler.h"
-#include "timer.h"
+#include "elevator.h"
+#include "fsm_elevator.h"
+
+#include <stdlib.h>
 #define DEFAULT_FLOOR 0
 
 void elevator_go(elevator_t *e){
@@ -46,18 +46,16 @@ void idle_state(elevator_t *e) {
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
     }
-    if (queue_hander_choose_direction(e)) {
-        queue_handler_set_floor(e);
-        elevator_driver_go(e);
-        e->last_state = IDLE;
-        e->current_state = MOVE;
+    queue_handler_set_floor(e);
+    elevator_driver_go(e);
+    e->last_state = IDLE;
+    e->current_state = MOVE;
     }
-}
 
 void emergency_state(elevator_t *e) {
     if (!hardware_read_stop_signal()){
         if (e->last_state == MOVE) {
-            clear_queue(e);
+            queue_handler_clear_queue(e);
             e->last_state = EMERGENCY_STOP;
             e->current_state = IDLE;
         }

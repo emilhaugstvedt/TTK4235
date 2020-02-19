@@ -1,6 +1,8 @@
-#include <time.h>
+
 #include "timer.h"
-#include "elevator.h"
+#include <time.h>
+#include <stdlib.h>
+
 /*
 void timer_wait_for_three(){
   int start_time = time(NULL);
@@ -11,13 +13,13 @@ void timer_wait_for_three(){
 }
 */
 
-void timer_start_time(elevator_t *e){
-  e->time = time(NULL);
+time_t timer_start_time(){
+  return time(NULL);
 }
 
-int timer_time_out(elevator_t *e){
+int timer_time_out(time_t start_time){
   time_t temp_time = time(NULL);
-  if (temp_time - e->time >= 3){
+  if (temp_time - start_time >= 3){
     return 1;
   }
   return 0;

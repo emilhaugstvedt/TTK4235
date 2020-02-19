@@ -1,9 +1,7 @@
-#include "elevator.h"
-#include "fsm_elevator.h"
 #include "hardware.h"
+#include "elevator.h"
 #include "elevator_driver.h"
-#include "queue_handler.h"
-#include "timer.h"
+#include <stdlib.h>
 
 void elevator_driver_set_engine(elevator_t *e) {
     switch (e->current_state)
@@ -29,8 +27,8 @@ void elevator_driver_go(elevator_t *e) {
     }
     hardware_command_movement(e->current_dir);
   }
-  if (e -> current_dir == 0) {
-    for (int floor = e ->  ; floor > e->current_floor; floor++ ){
+  if (e -> current_dir == HARDWARE_MOVEMENT_DOWN) {
+    for (int floor = e -> current_floor ; floor > 0; floor-- ){
       if (e->queue[floor][ORDER_DOWN] == 1){
         e->current_floor = floor;
       }

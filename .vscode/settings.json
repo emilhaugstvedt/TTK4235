@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "queue_handler.h": "c"
+        "queue_handler.h": "c",
+        "elevator.h": "c",
+        "hardware.h": "c",
+        "fsm_elevator.h": "c"
     }
 }

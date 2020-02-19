@@ -2,6 +2,9 @@
 #define ELEVATOR_DRIVER_H
 #define INIT_FLOOR 0
 
+#include "elevator.h"
+
+
 void elevator_driver_set_engine(elevator_t *e);
 
 /**
