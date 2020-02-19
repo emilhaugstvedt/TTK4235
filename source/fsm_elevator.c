@@ -7,7 +7,6 @@
 #define DEFAULT_FLOOR 0
 
 void elevator_go(elevator_t *e){
-  go_to_default(DEFAULT_FLOOR);
   while(1){
     switch (e->current_state) {
       case MOVE:
@@ -47,6 +46,7 @@ void idle_state(elevator_t *e) {
         e->current_state = EMERGENCY_STOP;
     }
     queue_handler_set_floor(e);
+    queue_handler_choose_direction(e);
     elevator_driver_go(e);
     e->last_state = IDLE;
     e->current_state = MOVE;
@@ -71,11 +71,4 @@ void door_state(elevator_t *e) {
     if (!hardware_read_stop_signal() && e->current_state == EMERGENCY_STOP){
 
     }
-}
-
-void go_to_default(elevator_t *e) {
-    if (hardware_read_floor_sensor(DEFAULT_FLOOR)){
-        e->current_floor = IDLE;
-    }
-
 }

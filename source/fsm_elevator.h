@@ -28,10 +28,6 @@ void emergency_state(elevator_t *e);
 */
 void door_state(elevator_t *e);
 
-/**
- * @brief Function that makes the elevator go to the default floor.
- */
-void go_to_default(elevator_t *e);
 
 /**
  * @brief The main fsm function that makes the elevator work. It contains a switch and switches between the differnt functions

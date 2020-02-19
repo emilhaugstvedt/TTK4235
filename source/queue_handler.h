@@ -17,7 +17,7 @@ void queue_handler_update_queue(elevator_t *e);
 /**
  * @brief Function that changes the current direction the the elevator.
  */
-void queue_hander_choose_direction(elevator_t *e);
+void queue_handler_choose_direction(elevator_t *e);
 
 /**
  * @brief Function that changes the number in the queue from 1 to 0 after an order is complete.
