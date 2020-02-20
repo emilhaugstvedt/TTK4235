@@ -24,7 +24,7 @@ void idle_state(elevator_t *e);
 * @brief Function that takes care of everything happening while the elevator is in EMERGENCY_STOP state.
 * @param elevator_t Struct that contains all the information important for running the elevator.
 */
-void emergency_state(elevator_t *e);
+void emergency_stop_state(elevator_t *e);
 
 /**
 * @brief Function that takes care of everything happening while the elevator is in DOOR_OPEN state.

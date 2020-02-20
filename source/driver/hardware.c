@@ -8,7 +8,7 @@ static int hardware_legal_floor(int floor, HardwareOrder order_type){
     int lower_floor = 0;
     int upper_floor = HARDWARE_NUMBER_OF_FLOORS - 1;
 
-    if(floor < lower_floor || floor >= upper_floor){
+    if(floor < lower_floor || floor > upper_floor){
         return 0;
     }
 
@@ -50,14 +50,14 @@ int hardware_init(){
 
     for(int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++){
         if(i != 0){
-            hardware_command_order_light(HARDWARE_ORDER_DOWN, i, 0);
+            hardware_command_order_light(i, HARDWARE_MOVEMENT_DOWN, 0);
         }
 
         if(i != HARDWARE_NUMBER_OF_FLOORS - 1){
-            hardware_command_order_light(HARDWARE_ORDER_UP, i, 0);
+            hardware_command_order_light(i,HARDWARE_ORDER_UP, 0);
         }
 
-        hardware_command_order_light(HARDWARE_ORDER_INSIDE, i, 0);
+        hardware_command_order_light(i, HARDWARE_ORDER_INSIDE, 0);
     }
 
     hardware_command_stop_light(0);
@@ -157,7 +157,7 @@ void hardware_command_floor_indicator_on(int floor){
         io_set_bit(LIGHT_FLOOR_IND2);
     }
     else{
-        io_set_bit(LIGHT_FLOOR_IND2);
+        io_clear_bit(LIGHT_FLOOR_IND2);
     }
 }
 

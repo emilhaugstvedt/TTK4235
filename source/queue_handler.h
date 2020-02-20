@@ -37,7 +37,7 @@ void queue_handler_set_floor(elevator_t *e);
  * @brief Function that searches for orders from inside the elevator
  * @param elevator_t Struct that contains all the information important for running the elevator.
  */
-int queue_handler_inside_order(elevator_t *e);
+void queue_handler_inside_order(elevator_t *e);
 
 
 #endif

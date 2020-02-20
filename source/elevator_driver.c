@@ -23,7 +23,7 @@ void elevator_driver_go(elevator_t *e) {
 }
 
 
-void elevator_driver_stop(elevator_t *e) {
+void elevator_driver_stop() {
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
   }
 
@@ -33,7 +33,8 @@ void elevator_driver_init_floor(elevator_t *e){
     while(1){
       if(hardware_read_floor_sensor(INIT_FLOOR)){
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-        e->current_floor = INIT_FLOOR;
+        e->current_floor = 0;
+        e->last_floor = 0;
         break;
     }
     }
@@ -42,14 +43,31 @@ void elevator_driver_init_floor(elevator_t *e){
 void elevator_driver_floor_passed(elevator_t *e){
   if (hardware_read_floor_sensor(0)) {
     e->last_floor = 0;
+    hardware_command_floor_indicator_on(e->last_floor);
   }
   if (hardware_read_floor_sensor(1)) {
     e->last_floor = 1;
+    hardware_command_floor_indicator_on(e->last_floor);
   }
   if (hardware_read_floor_sensor(2)) {
     e->last_floor = 2;
+    hardware_command_floor_indicator_on(e->last_floor);
   }
   if (hardware_read_floor_sensor(3)) {
     e->last_floor = 3;
+    hardware_command_floor_indicator_on(e->last_floor);
+    elevator_driver_stop(e);
   }
+}
+
+
+void elevator_driver_clear_lights(elevator_t *e) {
+      if(e->next_dir == HARDWARE_MOVEMENT_UP){
+        e->queue[e->current_floor][ORDER_UP] = 0;
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_UP,0);
+      }
+      if(e->next_dir == HARDWARE_MOVEMENT_DOWN){
+        e->queue[e->current_floor][ORDER_DOWN] = 0;
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_DOWN,0);
+      }
 }

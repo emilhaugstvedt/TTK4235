@@ -8,7 +8,7 @@
 #define DEFAULT_FLOOR 0
 
 void fsm_elevator_go(elevator_t *e){
-  while(!hardware_read_stop_signal()){
+  while(1){
     switch (e->current_state) {
       case MOVE:
         move_state(e);
@@ -19,7 +19,7 @@ void fsm_elevator_go(elevator_t *e){
         break;
 
       case EMERGENCY_STOP:
-        emergency_state(e);
+        emergency_stop_state(e);
         break;
 
       case DOOR_OPEN:
@@ -40,16 +40,10 @@ void move_state(elevator_t *e) {
     }
     elevator_driver_go(e);
     elevator_driver_floor_passed(e);
-    if (e->last_floor = e->current_floor){
+    if (e->last_floor == e->current_floor){
       elevator_driver_stop(e);
-      if(e->next_dir == HARDWARE_MOVEMENT_UP){
-        e->queue[e->current_floor][ORDER_UP] = 0;
-        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_UP,0);
-      }
-      if(e->next_dir == HARDWARE_MOVEMENT_DOWN){
-        e->queue[e->current_floor][ORDER_DOWN] = 0;
-        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_DOWN,0);
-      }
+      elevator_driver_clear_lights(e);
+      e->current_dir = e->next_dir;
       e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
       e->time = timer_start_time();
@@ -59,7 +53,6 @@ void move_state(elevator_t *e) {
 void idle_state(elevator_t *e) {
     printf("%s\n","idle" );
     queue_handler_update_queue(e);
-    queue_handler_inside_order(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
@@ -68,13 +61,13 @@ void idle_state(elevator_t *e) {
     queue_handler_choose_direction(e);
     if (e->current_dir != HARDWARE_MOVEMENT_STOP){
       elevator_driver_go(e);
-      e->current_dir = e->next_dir;
       e->last_state = IDLE;
       e->current_state = MOVE;
     }
   }
 
-void emergency_state(elevator_t *e) {
+void emergency_stop_state(elevator_t *e) {
+    elevator_driver_stop();
     if (!hardware_read_stop_signal()){
         if (e->last_state == MOVE) {
             queue_handler_clear_queue(e);
@@ -94,6 +87,7 @@ void door_state(elevator_t *e) {
     if (!hardware_read_stop_signal() && e->current_state == EMERGENCY_STOP){
     }
     hardware_command_door_open(1);
+    queue_handler_inside_order(e);
     if(timer_wait_for_three(e->time)){
       hardware_command_door_open(0);
       e->last_state = e->current_state;
