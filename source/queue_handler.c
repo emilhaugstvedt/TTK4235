@@ -168,7 +168,7 @@ void queue_handler_inside_order(elevator_t *e){
               printf("%d",2);
             }
         }
-        if (hardware_read_order(3, HARDWARE_ORDER_UP)){
+        if (hardware_read_order(3, HARDWARE_ORDER_INSIDE)){
           hardware_command_order_light(3, HARDWARE_ORDER_INSIDE, 1);
             e->queue[3][ORDER_DOWN] = 1;
             printf("%d",3);

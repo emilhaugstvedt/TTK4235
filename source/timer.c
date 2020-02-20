@@ -2,6 +2,7 @@
 #include "timer.h"
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
 void timer_wait_for_three(){
@@ -18,6 +19,7 @@ time_t timer_start_time(){
 }
 
 int timer_wait_for_three(time_t start_time){
+  printf("%s", "TARTIDEN!!!");
   time_t temp_time = time(NULL);
   if (temp_time - start_time >= 3){
     return 1;

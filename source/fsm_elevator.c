@@ -43,10 +43,10 @@ void move_state(elevator_t *e) {
     if (e->last_floor == e->current_floor){
       elevator_driver_stop(e);
       elevator_driver_clear_lights(e);
+      e->time = timer_start_time();
       e->current_dir = e->next_dir;
       e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
-      e->time = timer_start_time();
     }
 }
 
