@@ -4,9 +4,6 @@
 
 #include "elevator.h"
 
-
-void elevator_driver_set_engine(elevator_t *e);
-
 /**
  * @brief
  *
@@ -18,8 +15,15 @@ void elevator_driver_go(elevator_t *e);
  */
 void elevator_driver_stop(elevator_t *e);
 
+/**
+ * @brief Function that makes the elvator go to the initial floor, 1 atm. Used before the other functions when starting the elevator.
+ */
 void elevator_driver_init_floor(elevator_t *e);
 
-void elevator_driver_open_door();
+/**
+ * @brief Function that changes the last_floor variable in the elevator struct to the last floor passed by the elevator.
+ */
+void elevator_driver_floor_passed(elevator_t *e);
+
 
 #endif

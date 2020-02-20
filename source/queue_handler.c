@@ -139,3 +139,41 @@ void queue_handler_order_complete(elevator_t *e){
     e->queue[e->current_floor][ORDER_DOWN] = 0;
   }
 }
+
+int queue_handler_inside_order(elevator_t *e){
+        if (hardware_read_order(0, HARDWARE_ORDER_INSIDE)){
+            e->queue[0][ORDER_UP] = 1;
+            printf("%d", 2);
+            return 1;
+        }
+        if (hardware_read_order(1, HARDWARE_ORDER_INSIDE)){
+          hardware_command_order_light(1, HARDWARE_ORDER_INSIDE, 1);
+            if (e->current_dir == HARDWARE_MOVEMENT_UP){
+              e->queue[1][ORDER_UP] = 1;
+              printf("%d",1);
+              return 1;s
+            }
+            if (e->current_dir == HARDWARE_ORDER_DOWN){
+              e->queue[1][ORDER_DOWN] = 1;
+              printf("%d",1);
+              return 1;
+            }
+        }
+        if (hardware_read_order(2, HARDWARE_ORDER_INSIDE)){}
+          hardware_command_order_light(2, HARDWARE_ORDER_INSIDE, 1);
+            if (e->current_dir == HARDWARE_MOVEMENT_UP){
+              e->queue[2][ORDER_UP] = 1;
+              printf("%d",2);
+              return 1;
+            }
+            if (e->current_dir == HARDWARE_ORDER_DOWN){
+              e->queue[2][ORDER_DOWN] = 1;
+              printf("%d",2);
+              return 1;
+            }
+        if (hardware_read_order(3, HARDWARE_ORDER_UP)){
+          hardware_command_order_light(3, HARDWARE_ORDER_INSIDE, 1);
+            e->queue[3][ORDER_DOWN] = 1;
+            printf("%d",3);
+        }
+}

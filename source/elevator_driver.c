@@ -3,21 +3,6 @@
 #include "elevator_driver.h"
 #include <stdlib.h>
 
-void elevator_driver_set_engine(elevator_t *e) {
-    switch (e->current_state)
-    {
-    case MOVE:
-        elevator_driver_set_engine(e);
-        break;
-    case IDLE:
-    case DOOR_OPEN:
-    case EMERGENCY_STOP:
-
-    default:
-        break;
-    }
-}
-
 void elevator_driver_go(elevator_t *e) {
   if (e -> current_dir == HARDWARE_MOVEMENT_UP) {
     for (int floor = e -> current_floor; floor > e -> last_floor; floor--) {
@@ -54,8 +39,17 @@ void elevator_driver_init_floor(elevator_t *e){
     }
   }
 
-void elevator_driver_open_door(){
-  hardware_command_door_open(1);
-  //timer_wait_for_three();
-  hardware_command_door_open(0);
+void elevator_driver_floor_passed(elevator_t *e){
+  if (hardware_read_floor_sensor(0)) {
+    e->last_floor = 0;
+  }
+  if (hardware_read_floor_sensor(1)) {
+    e->last_floor = 1;
+  }
+  if (hardware_read_floor_sensor(2)) {
+    e->last_floor = 2;
+  }
+  if (hardware_read_floor_sensor(3)) {
+    e->last_floor = 3;
+  }
 }

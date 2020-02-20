@@ -39,13 +39,16 @@ void move_state(elevator_t *e) {
         e->current_state = EMERGENCY_STOP;
     }
     elevator_driver_go(e);
-    if (hardware_read_floor_sensor(e->current_floor) == 1){
+    elevator_driver_floor_passed(e);
+    if (e->last_floor = e->current_floor){
       elevator_driver_stop(e);
       if(e->next_dir == HARDWARE_MOVEMENT_UP){
         e->queue[e->current_floor][ORDER_UP] = 0;
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_UP,0);
       }
       if(e->next_dir == HARDWARE_MOVEMENT_DOWN){
         e->queue[e->current_floor][ORDER_DOWN] = 0;
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_DOWN,0);
       }
       e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
@@ -56,6 +59,7 @@ void move_state(elevator_t *e) {
 void idle_state(elevator_t *e) {
     printf("%s\n","idle" );
     queue_handler_update_queue(e);
+    queue_handler_inside_order(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;

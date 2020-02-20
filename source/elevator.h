@@ -11,6 +11,9 @@
 #define ORDER_DOWN 0
 #define MAX_ORDER_AMOUNT 6
 
+/**
+ * @brief Enum used to define the different states of the elevator.
+ */
 typedef enum {
   IDLE,
   MOVE,
@@ -29,7 +32,6 @@ typedef struct {
   int queue[QUEUE_FLOOR][QUEUE_ORDERS];
   HardwareMovement current_dir;
   HardwareMovement next_dir;
-  int allow_order_search;
   time_t time;
 } elevator_t;
 
