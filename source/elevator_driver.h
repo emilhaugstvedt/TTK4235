@@ -25,7 +25,15 @@ void elevator_driver_init_floor(elevator_t *e);
  */
 void elevator_driver_floor_passed(elevator_t *e);
 
+/**
+ * @brief Function taht clears the lights of floor upon arrival.
+ */
 void elevator_driver_clear_lights(elevator_t *e);
+
+/**
+ * @brief Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not.
+ */
+int elevator_driver_at_floor(elevator_t *e)
 
 
 #endif

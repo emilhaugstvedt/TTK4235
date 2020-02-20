@@ -49,7 +49,7 @@ void queue_handler_update_queue(elevator_t *e){
       }
 
 
-void queue_handler_choose_direction(elevator_t *e){ //Lage en måte å ta i mot en bestilling fra den etasjen man er i om man står i ro. 
+void queue_handler_choose_direction(elevator_t *e){ 
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
     e->current_dir = HARDWARE_MOVEMENT_STOP;
     for (int floor = e->last_floor; floor < QUEUE_FLOOR; floor++) {
@@ -69,6 +69,7 @@ void queue_handler_choose_direction(elevator_t *e){ //Lage en måte å ta i mot 
   }
   if (e->current_dir == HARDWARE_MOVEMENT_STOP){
     if(e->queue[e->current_floor][ORDER_UP] || e->queue[e->current_floor][ORDER_DOWN]){
+      e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
     }
     else {

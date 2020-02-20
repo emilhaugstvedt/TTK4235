@@ -66,6 +66,24 @@ void idle_state(elevator_t *e) {
     }
   }
 
+void door_state(elevator_t *e) {
+  printf("%s\n","door");
+    queue_handler_update_queue(e);
+    if (hardware_read_stop_signal()){
+      e->last_state = e->current_state;
+      e->current_state = EMERGENCY_STOP;
+    }
+    if (elevator_driver_at_floor(e)){
+      hardware_command_door_open(1);
+    }
+    queue_handler_inside_order(e);
+    if(timer_wait_for_three(e->time) && !hardware_read_obstruction_signal()){
+      hardware_command_door_open(0);
+      e->last_state = e->current_state;
+      e->current_state = IDLE;
+  }
+}
+
 void emergency_stop_state(elevator_t *e) {
     elevator_driver_stop();
     if (!hardware_read_stop_signal()){
@@ -74,23 +92,11 @@ void emergency_stop_state(elevator_t *e) {
             e->last_state = EMERGENCY_STOP;
             e->current_state = IDLE;
         }
-        else if (e->last_state == IDLE){
+        else if (e->last_state == IDLE || e->last_state == DOOR_OPEN){
+            e->time = timer_start_time();
             e->last_state = e->current_state;
             e->current_state = DOOR_OPEN;
         }
-    }
-}
 
-void door_state(elevator_t *e) {
-  printf("%s\n","door");
-    queue_handler_update_queue(e);
-    if (!hardware_read_stop_signal() && e->current_state == EMERGENCY_STOP){
     }
-    hardware_command_door_open(1);
-    queue_handler_inside_order(e);
-    if(timer_wait_for_three(e->time)){
-      hardware_command_door_open(0);
-      e->last_state = e->current_state;
-      e->current_state = IDLE;
-  }
 }

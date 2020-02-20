@@ -73,3 +73,21 @@ void elevator_driver_clear_lights(elevator_t *e) {
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_INSIDE, 0);
       }
 }
+
+int elevator_driver_at_floor(elevator_t *e) {
+  if (hardware_read_floor_sensor(0)) {
+    return 1;
+  }
+  else if (hardware_read_floor_sensor(1)) {
+    return 1;
+  }
+  else if (hardware_read_floor_sensor(2)) {
+    return 1;
+  }
+  else if (hardware_read_floor_sensor(3)) {
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
