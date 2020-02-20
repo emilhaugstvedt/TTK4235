@@ -49,31 +49,29 @@ void queue_handler_update_queue(elevator_t *e){
       }
 
 
-void queue_handler_choose_direction(elevator_t *e){
+void queue_handler_choose_direction(elevator_t *e){ //Lage en måte å ta i mot en bestilling fra den etasjen man er i om man står i ro. 
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
-    e->current_dir = HARDWARE_MOVEMENT_DOWN;
+    e->current_dir = HARDWARE_MOVEMENT_STOP;
     for (int floor = e->last_floor; floor < QUEUE_FLOOR; floor++) {
       if (e->queue[floor][ORDER_UP]){
         e->current_dir = HARDWARE_ORDER_UP;
       }
-      else {
-        e->current_dir = HARDWARE_MOVEMENT_STOP;
-      }
     }
   }
   if (e->current_dir == HARDWARE_MOVEMENT_DOWN) {
-    e->current_dir = HARDWARE_MOVEMENT_UP;
+    e->current_dir = HARDWARE_MOVEMENT_STOP;
     for (int floor = e->current_floor; floor >= 0; floor--) {
       if (e->queue[floor][ORDER_DOWN]){
         e->current_dir = HARDWARE_ORDER_DOWN;
         e->next_dir = HARDWARE_MOVEMENT_DOWN;
-      }
-      else {
-        e->current_dir = HARDWARE_MOVEMENT_STOP;
-      }
-}
-}
+      } 
+    }
+  }
   if (e->current_dir == HARDWARE_MOVEMENT_STOP){
+    if(e->queue[e->current_floor][ORDER_UP] || e->queue[e->current_floor][ORDER_DOWN]){
+      e->current_state = DOOR_OPEN;
+    }
+    else {
     for (int floor = 0; floor < 4; floor++) {
       if (e->queue[floor][ORDER_UP]){
         if(floor > e->last_floor){
@@ -98,6 +96,7 @@ void queue_handler_choose_direction(elevator_t *e){
       }
     }
   }
+}
 
 
 void queue_handler_set_floor(elevator_t *e) {

@@ -65,9 +65,11 @@ void elevator_driver_clear_lights(elevator_t *e) {
       if(e->next_dir == HARDWARE_MOVEMENT_UP){
         e->queue[e->current_floor][ORDER_UP] = 0;
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_UP,0);
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_INSIDE, 0);
       }
       if(e->next_dir == HARDWARE_MOVEMENT_DOWN){
         e->queue[e->current_floor][ORDER_DOWN] = 0;
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_DOWN,0);
+        hardware_command_order_light(e->current_floor, HARDWARE_ORDER_INSIDE, 0);
       }
 }
