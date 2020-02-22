@@ -27,7 +27,6 @@ void fsm_elevator_go(elevator_t *e){
         break;
     }
   }
-  hardware_command_movement(HARDWARE_MOVEMENT_STOP);
 }
 
 

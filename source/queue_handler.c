@@ -54,7 +54,7 @@ void queue_handler_choose_direction(elevator_t *e){
     e->current_dir = HARDWARE_MOVEMENT_STOP;
     for (int floor = e->last_floor; floor < QUEUE_FLOOR; floor++) {
       if (e->queue[floor][ORDER_UP]){
-        e->current_dir = HARDWARE_ORDER_UP;
+        e->current_dir = HARDWARE_MOVEMENT_UP;
       }
     }
   }
@@ -62,7 +62,7 @@ void queue_handler_choose_direction(elevator_t *e){
     e->current_dir = HARDWARE_MOVEMENT_STOP;
     for (int floor = e->current_floor; floor >= 0; floor--) {
       if (e->queue[floor][ORDER_DOWN]){
-        e->current_dir = HARDWARE_ORDER_DOWN;
+        e->current_dir = HARDWARE_MOVEMENT_DOWN;
         e->next_dir = HARDWARE_MOVEMENT_DOWN;
       } 
     }
@@ -87,11 +87,11 @@ void queue_handler_choose_direction(elevator_t *e){
         if (e->queue[floor][ORDER_DOWN]){
           if(floor > e->last_floor){
             e->current_dir = HARDWARE_MOVEMENT_UP;
-            e->next_dir = HARDWARE_ORDER_DOWN;
+            e->next_dir = HARDWARE_MOVEMENT_DOWN;
           }
           else if(floor < e->last_floor){
             e->current_dir = HARDWARE_MOVEMENT_DOWN;
-            e->next_dir = HARDWARE_ORDER_DOWN;
+            e->next_dir = HARDWARE_MOVEMENT_DOWN;
             }
           }
       }

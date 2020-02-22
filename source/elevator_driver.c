@@ -56,7 +56,7 @@ void elevator_driver_floor_passed(elevator_t *e){
   if (hardware_read_floor_sensor(3)) {
     e->last_floor = 3;
     hardware_command_floor_indicator_on(e->last_floor);
-    elevator_driver_stop(e);
+    elevator_driver_stop();
   }
 }
 
