@@ -93,12 +93,11 @@ void queue_handler_choose_direction(elevator_t *e){
             e->current_dir = HARDWARE_MOVEMENT_DOWN;
             e->next_dir = HARDWARE_MOVEMENT_DOWN;
             }
-          }
+        }
       }
     }
   }
 }
-
 
 void queue_handler_set_floor(elevator_t *e) {
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
