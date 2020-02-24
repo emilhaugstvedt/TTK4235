@@ -15,11 +15,11 @@ void timer_wait_for_three(){
 */
 
 time_t timer_start_time(){
+  printf("%s\n", "Hentet starttid." );
   return time(NULL);
 }
 
 int timer_wait_for_three(time_t start_time){
-  printf("%s", "TARTIDEN!!!");
   time_t temp_time = time(NULL);
   if (temp_time - start_time >= 3){
     return 1;

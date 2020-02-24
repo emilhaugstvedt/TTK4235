@@ -8,7 +8,7 @@
 #define DEFAULT_FLOOR 0
 
 void fsm_elevator_go(elevator_t *e){
-  while(1){
+  while(!hardware_read_stop_signal()){
     switch (e->current_state) {
       case MOVE:
         move_state(e);
@@ -33,25 +33,29 @@ void fsm_elevator_go(elevator_t *e){
 void move_state(elevator_t *e) {
   printf("%s\n","move" );
     queue_handler_update_queue(e);
+    queue_handler_inside_order(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
     }
     elevator_driver_go(e);
     elevator_driver_floor_passed(e);
-    if (e->last_floor == e->current_floor){
+    if(e->last_floor == e->current_floor){
       elevator_driver_stop(e);
       elevator_driver_clear_lights(e);
-      e->time = timer_start_time();
-      e->current_dir = e->next_dir;
-      e->last_state = e->current_state;
-      e->current_state = DOOR_OPEN;
+      if (e->time == 0){
+        e->time = timer_start_time();
+        e->current_dir = e->next_dir;
+        e->last_state = e->current_state;
+        e->current_state = DOOR_OPEN;
+      }
+      }
     }
-}
 
 void idle_state(elevator_t *e) {
     printf("%s\n","idle" );
     queue_handler_update_queue(e);
+    queue_handler_inside_order(e);
     if (hardware_read_stop_signal()){
         e->last_state = e->current_state;
         e->current_state = EMERGENCY_STOP;
@@ -62,12 +66,14 @@ void idle_state(elevator_t *e) {
       elevator_driver_go(e);
       e->last_state = IDLE;
       e->current_state = MOVE;
-    }
   }
+}
 
 void door_state(elevator_t *e) {
   printf("%s\n","door");
+    queue_handler_current_floor(e);
     queue_handler_update_queue(e);
+    queue_handler_inside_order(e);
     if (hardware_read_stop_signal()){
       e->last_state = e->current_state;
       e->current_state = EMERGENCY_STOP;
@@ -75,8 +81,9 @@ void door_state(elevator_t *e) {
     if (elevator_driver_at_floor(e)){
       hardware_command_door_open(1);
     }
-    queue_handler_inside_order(e);
+      printf("%s", "TARTIDEN!!!");
     if(timer_wait_for_three(e->time) && !hardware_read_obstruction_signal()){
+      e->time = 0;
       hardware_command_door_open(0);
       e->last_state = e->current_state;
       e->current_state = IDLE;
