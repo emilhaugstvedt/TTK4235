@@ -3,6 +3,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#define DURATION 3
+
+static time_t end_time;
+int timer_enable;
 
 /*
 void timer_wait_for_three(){
@@ -14,14 +18,13 @@ void timer_wait_for_three(){
 }
 */
 
-time_t timer_start_time(){
-  printf("%s\n", "Hentet starttid." );
-  return time(NULL);
+void timer_end_time(){
+  end_time = time(NULL) + DURATION;
+  timer_enable = 1;
 }
 
-int timer_wait_for_three(time_t start_time){
-  time_t temp_time = time(NULL);
-  if (temp_time - start_time >= 3){
+int timer_time_out(time_t start_time){
+  if (end_time < time(NULL)){
     return 1;
   }
   return 0;

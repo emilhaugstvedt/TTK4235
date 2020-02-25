@@ -4,22 +4,7 @@
 #include <stdlib.h>
 
 void elevator_driver_go(elevator_t *e) {
-  if (e -> current_dir == HARDWARE_MOVEMENT_UP) {
-    for (int floor = e -> current_floor; floor > e -> current_floor; floor--) {
-      if (e -> queue[floor][ORDER_UP] == 1) {
-        e -> current_floor = floor;
-      }
-    }
-    hardware_command_movement(HARDWARE_MOVEMENT_UP);
-  }
-  if (e -> current_dir == HARDWARE_MOVEMENT_DOWN) {
-    for (int floor = 0 ; floor < e->current_floor; floor++){
-      if (e->queue[floor][ORDER_DOWN] == 1){
-        e->current_floor = floor;
-      }
-    }
-    hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-  }
+
 }
 
 
@@ -27,16 +12,6 @@ void elevator_driver_stop() {
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
   }
 
-
-void elevator_driver_init_floor(elevator_t *e){
-    hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-    while(1){
-      if(hardware_read_floor_sensor(INIT_FLOOR)){
-        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-        break;
-    }
-    }
-  }
 
 void elevator_driver_floor_passed(elevator_t *e){
   if (hardware_read_floor_sensor(0)) {
@@ -60,12 +35,12 @@ void elevator_driver_floor_passed(elevator_t *e){
 
 
 void elevator_driver_clear_lights(elevator_t *e) {
-      if(e->next_dir == HARDWARE_MOVEMENT_UP){
+      if(e->current_dir == HARDWARE_MOVEMENT_UP){
         e->queue[e->current_floor][ORDER_UP] = 0;
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_UP,0);
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_INSIDE, 0);
       }
-      if(e->next_dir == HARDWARE_MOVEMENT_DOWN){
+      if(e->current_dir == HARDWARE_MOVEMENT_DOWN){
         e->queue[e->current_floor][ORDER_DOWN] = 0;
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_DOWN,0);
         hardware_command_order_light(e->current_floor, HARDWARE_ORDER_INSIDE, 0);
@@ -107,19 +82,27 @@ void elevator_driver_clear_all_lights(){
 }
 
 void elevator_driver_initialize_elevator(elevator_t *e){
+  elevator_driver_clear_all_lights();
   e->current_state = IDLE;
   e->last_state = DOOR_OPEN;
-  e->current_dir = HARDWARE_MOVEMENT_STOP;
-  e->next_dir = HARDWARE_MOVEMENT_STOP;
-  e->time = 0;
+  e->current_dir = HARDWARE_MOVEMENT_DOWN;
   e->current_floor = 0;
-  e->next_floor = 0;
-  for(int floor = 0; floor < 4; floor++) {
-    for (int order = 0; order < 2; order ++) {
+  for(int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
+    for (int order = 0; order < 3; order ++) {
       e->queue[floor][order] = 0;
     }
   }
 }
+
+void elevator_driver_init_floor(elevator_t *e){
+    hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+    while(1){
+      if(hardware_read_floor_sensor(INIT_FLOOR)){
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+        break;
+    }
+    }
+  }
 
 
 void elevator_driver_range_control(){

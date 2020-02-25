@@ -16,14 +16,12 @@ int main(){
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
-elevator_driver_clear_all_lights();
-
 elevator_t elev;
 elevator_t *e = &elev;
 
-elevator_driver_init_floor(e);
-
 elevator_driver_initialize_elevator(e);
+
+elevator_driver_init_floor(e);
 
 fsm_elevator_go(e);
 // while(!hardware_read_stop_signal()){
@@ -41,9 +39,14 @@ fsm_elevator_go(e);
 //   }
 // }
 for(int floor = 0; floor < 4; floor++) {
-  for (int order = 0; order < 2; order ++) {
-    printf("%d \n", e->queue[floor][order]);
+  printf("%s\n", " ");
+  for (int order = 0; order < 3; order ++) {
+    printf("%d", e->queue[floor][order]);
   }}
 
+// timer_end_time();
+// while (!timer_time_out()){
+// printf("%s\n", "JAHA" );
+// }
 
 }

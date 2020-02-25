@@ -4,15 +4,16 @@
 #include <stdlib.h>
 
 
+extern int timer_enable;
 /**
- * @brief Function that takes in a time and waits three seconds from that time.
+ * @brief
  */
-int timer_wait_for_three();
+void timer_end_time();
 
 /**
  * @brief Function that returns a start time. Used for saving a timestamp in the elevator.
  */
-time_t timer_start_time();
+int timer_time_out();
 
 
 #endif
