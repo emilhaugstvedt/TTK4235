@@ -35,5 +35,10 @@ void elevator_driver_clear_lights(elevator_t *e);
  */
 int elevator_driver_at_floor(elevator_t *e);
 
+void elevator_driver_clear_all_lights();
+
+void elevator_driver_initialize_elevator(elevator_t *e);
+
+void elevator_driver_range_control();
 
 #endif

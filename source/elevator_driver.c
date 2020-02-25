@@ -5,7 +5,7 @@
 
 void elevator_driver_go(elevator_t *e) {
   if (e -> current_dir == HARDWARE_MOVEMENT_UP) {
-    for (int floor = e -> current_floor; floor > e -> last_floor; floor--) {
+    for (int floor = e -> current_floor; floor > e -> current_floor; floor--) {
       if (e -> queue[floor][ORDER_UP] == 1) {
         e -> current_floor = floor;
       }
@@ -13,7 +13,7 @@ void elevator_driver_go(elevator_t *e) {
     hardware_command_movement(HARDWARE_MOVEMENT_UP);
   }
   if (e -> current_dir == HARDWARE_MOVEMENT_DOWN) {
-    for (int floor = 0 ; floor < e->last_floor; floor++){
+    for (int floor = 0 ; floor < e->current_floor; floor++){
       if (e->queue[floor][ORDER_DOWN] == 1){
         e->current_floor = floor;
       }
@@ -33,8 +33,6 @@ void elevator_driver_init_floor(elevator_t *e){
     while(1){
       if(hardware_read_floor_sensor(INIT_FLOOR)){
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-        e->current_floor = 0;
-        e->last_floor = 0;
         break;
     }
     }
@@ -42,20 +40,20 @@ void elevator_driver_init_floor(elevator_t *e){
 
 void elevator_driver_floor_passed(elevator_t *e){
   if (hardware_read_floor_sensor(0)) {
-    e->last_floor = 0;
-    hardware_command_floor_indicator_on(e->last_floor);
+    e->current_floor = 0;
+    hardware_command_floor_indicator_on(e->current_floor);
   }
   if (hardware_read_floor_sensor(1)) {
-    e->last_floor = 1;
-    hardware_command_floor_indicator_on(e->last_floor);
+    e->current_floor = 1;
+    hardware_command_floor_indicator_on(e->current_floor);
   }
   if (hardware_read_floor_sensor(2)) {
-    e->last_floor = 2;
-    hardware_command_floor_indicator_on(e->last_floor);
+    e->current_floor = 2;
+    hardware_command_floor_indicator_on(e->current_floor);
   }
   if (hardware_read_floor_sensor(3)) {
-    e->last_floor = 3;
-    hardware_command_floor_indicator_on(e->last_floor);
+    e->current_floor = 3;
+    hardware_command_floor_indicator_on(e->current_floor);
     elevator_driver_stop();
   }
 }
@@ -91,5 +89,43 @@ int elevator_driver_at_floor(elevator_t *e) {
   }
   else {
     return 0;
+  }
+}
+
+
+void elevator_driver_clear_all_lights(){
+  hardware_command_order_light(1, HARDWARE_ORDER_DOWN, 0);
+  hardware_command_order_light(2, HARDWARE_ORDER_DOWN, 0);
+  hardware_command_order_light(3, HARDWARE_ORDER_DOWN, 0);
+  hardware_command_order_light(0, HARDWARE_ORDER_UP, 0);
+  hardware_command_order_light(1, HARDWARE_ORDER_UP, 0);
+  hardware_command_order_light(2, HARDWARE_ORDER_UP, 0);
+  hardware_command_order_light(0, HARDWARE_ORDER_INSIDE, 0);
+  hardware_command_order_light(1, HARDWARE_ORDER_INSIDE, 0);
+  hardware_command_order_light(2, HARDWARE_ORDER_INSIDE, 0);
+  hardware_command_order_light(3, HARDWARE_ORDER_INSIDE, 0);
+}
+
+void elevator_driver_initialize_elevator(elevator_t *e){
+  e->current_state = IDLE;
+  e->last_state = DOOR_OPEN;
+  e->current_dir = HARDWARE_MOVEMENT_STOP;
+  e->next_dir = HARDWARE_MOVEMENT_STOP;
+  e->time = 0;
+  e->current_floor = 0;
+  e->next_floor = 0;
+  for(int floor = 0; floor < 4; floor++) {
+    for (int order = 0; order < 2; order ++) {
+      e->queue[floor][order] = 0;
+    }
+  }
+}
+
+
+void elevator_driver_range_control(){
+  if (hardware_read_floor_sensor(HARDWARE_NUMBER_OF_FLOORS - 1)){
+    hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+  } else if (hardware_read_floor_sensor(0)){
+    hardware_command_movement(HARDWARE_MOVEMENT_UP);
   }
 }
