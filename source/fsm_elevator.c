@@ -54,8 +54,9 @@ void idle_state(elevator_t *e) {
     queue_handler_update_queue(e);
     queue_handler_inside_order(e);
     if (e->last_state == MOVE && elevator_driver_at_floor(e) && e->time == 0){
-      elevator_driver_clear_lights(e);
-      queue_handler_order_complete(e);
+      printf("%s\n","MOREN DIN" );
+      elevator_driver_clear_li
+
       e->time = timer_start_time();
       hardware_command_door_open(1);
       e->last_state = e->current_state;
@@ -63,6 +64,7 @@ void idle_state(elevator_t *e) {
 
     }
     if (e->last_state == DOOR_OPEN  || e->last_state == EMERGENCY_STOP){
+      printf("%s\n","CELINE DION ER FAREN DIN" );
       queue_handler_choose_direction(e);
       queue_handler_set_floor(e);
       if(e->current_dir != HARDWARE_MOVEMENT_STOP){
@@ -74,7 +76,6 @@ void idle_state(elevator_t *e) {
     else {
       queue_handler_clear_queue(e);
       elevator_driver_init_floor(e);
-
     }
   }
 

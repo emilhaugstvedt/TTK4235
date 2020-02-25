@@ -121,7 +121,7 @@ void queue_handler_set_floor(elevator_t *e) {
 
 
 
-void queue_handler_order_complete(elevator_t *e){}
+void queue_handler_order_complete(elevator_t *e){
   if (e->current_dir == HARDWARE_MOVEMENT_UP) {
     e->queue[e->current_floor][ORDER_UP] = 0;
   }
