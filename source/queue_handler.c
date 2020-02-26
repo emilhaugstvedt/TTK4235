@@ -128,6 +128,7 @@ if(e->current_dir == HARDWARE_MOVEMENT_DOWN){
   }
 
 int queue_handler_stop(elevator_t *e){
+  
   if(e->current_floor == TOP_FLOOR && e->queue[TOP_FLOOR][ORDER_DOWN]){
     return 1;
   }
@@ -151,14 +152,17 @@ int queue_handler_stop(elevator_t *e){
 
 
 void queue_handler_order_complete(elevator_t *e){
-  if (e->current_dir == HARDWARE_MOVEMENT_UP) {
+    e->queue[e->current_floor][ORDER_UP] = 0;
+    e->queue[e->current_floor][ORDER_INSIDE] =0;
+    e->queue[e->current_floor][ORDER_DOWN] = 0;
+  /* if (e->current_dir == HARDWARE_MOVEMENT_UP) {
     e->queue[e->current_floor][ORDER_UP] = 0;
     e->queue[e->current_floor][ORDER_INSIDE] =0;
   }
   if (e->current_dir == HARDWARE_MOVEMENT_DOWN) {
     e->queue[e->current_floor][ORDER_DOWN] = 0;
     e->queue[e->current_floor][ORDER_INSIDE] =0;
-  }
+  } */
 }
 
   void queue_handler_lights(elevator_t *e) {
