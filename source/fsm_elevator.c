@@ -32,27 +32,39 @@ void fsm_elevator_go(elevator_t *e){
 void idle_state(elevator_t *e) {
   queue_handler_update_queue_outside(e);
   queue_handler_update_queue_inside(e);
-  if(e->last_state == MOVE){
+  queue_handler_lights(e);
+  if(hardware_read_stop_signal()){
+    e->last_state = e->current_state;
+    e->current_state = EMERGENCY_STOP;
+  } 
+  if(e->last_state == MOVE && !hardware_read_stop_signal()){
     printf("%s\n", "IDLE MOVE" );
-    queue_handler_order_complete(e);
     if (elevator_driver_at_floor(e)) {
-      timer_end_time();
+      if(e->time == 0){
+      e->time = timer_start_time();
       hardware_command_door_open(1);
       e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
+      }
     }
   }
-  else if(e->last_state == DOOR_OPEN){
+  else if(e->last_state == DOOR_OPEN && !hardware_read_stop_signal()){
     printf("%s\n", "IDLE DOOR");
+    queue_handler_lights(e);
     if (queue_handler_change_dir(e) == 0){
       e->last_state = e->current_state;
       e->current_state = MOVE;
     }
   }
-  else if(e->last_state == EMERGENCY_STOP){
-
+  else if(e->last_state == EMERGENCY_STOP && !hardware_read_stop_signal()){
+    printf("%s\n", "EMERGENCY!");
+    queue_handler_lights(e);
+    if (queue_handler_change_dir(e) == 0){
+      e->last_state = e->current_state;
+      e->current_state = MOVE;
+    }
   }
-  else {
+  else if(!hardware_read_stop_signal()) {
     printf("%s\n", "IDLE ELSE" );
     elevator_driver_init_floor(e);
     elevator_driver_initialize_elevator(e);
@@ -65,15 +77,20 @@ void move_state(elevator_t *e) {
   elevator_driver_range_control();
   queue_handler_update_queue_outside(e);
   queue_handler_update_queue_inside(e);
-  elevator_driver_floor_passed(e);
   queue_handler_lights(e);
-  if (!queue_handler_stop(e)){
-    hardware_command_movement(e->current_dir);
+  elevator_driver_floor_passed(e);
+  if(hardware_read_stop_signal()){
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    e->last_state = e->current_state;
+    e->current_state = EMERGENCY_STOP;
   }
-  else {
+  if (queue_handler_stop(e) && elevator_driver_at_floor(e)){
     elevator_driver_stop();
     e->last_state = e->current_state;
     e->current_state = IDLE;
+  }
+  else {
+    hardware_command_movement(e->current_dir);
   }
 }
 
@@ -83,9 +100,10 @@ void door_state(elevator_t *e) {
   queue_handler_update_queue_outside(e);
   queue_handler_update_queue_inside(e);
   queue_handler_lights(e);
-  if(timer_time_out() && timer_enable) {
+  queue_handler_order_complete(e);
+  if(timer_three_seconds(e->time) && !hardware_read_obstruction_signal() && elevator_driver_at_floor(e)) {
     hardware_command_door_open(0);
-    timer_enable = 0;
+    e->time = 0;
     e->last_state = e->current_state;
     e->current_state = IDLE;
   }
@@ -93,5 +111,23 @@ void door_state(elevator_t *e) {
 }
 
 void emergency_stop_state(elevator_t *e) {
-
+  hardware_command_stop_light(1);
+  hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+  if(e->last_state == MOVE) {
+    hardware_command_stop_light(0);
+    queue_handler_clear_queue(e);
+    e->last_state = e->current_state;
+    e->current_state = IDLE;
+  }
+  if(e->last_state == IDLE || e->last_state == DOOR_OPEN) {
+    if(e->time == 0){
+      e->time = timer_start_time();
+      hardware_command_door_open(1);
+      hardware_command_stop_light(0);
+      e->last_state = e->current_state;
+      e->current_state = DOOR_OPEN;
+      }
+    e->last_state = e->current_state;
+    e->current_state = DOOR_OPEN;
+  }
 }

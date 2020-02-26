@@ -29,6 +29,7 @@ typedef struct {
   int current_floor;
   int queue[HARDWARE_NUMBER_OF_FLOORS][NUMBER_OF_ORDERS];
   HardwareMovement current_dir;
+  time_t time;
 } elevator_t;
 
 #endif

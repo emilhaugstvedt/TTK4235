@@ -3,10 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-#define DURATION 3
 
-static time_t end_time;
-int timer_enable;
 
 /*
 void timer_wait_for_three(){
@@ -18,13 +15,12 @@ void timer_wait_for_three(){
 }
 */
 
-void timer_end_time(){
-  end_time = time(NULL) + DURATION;
-  timer_enable = 1;
+time_t timer_start_time(){
+  return time(NULL);
 }
 
-int timer_time_out(time_t start_time){
-  if (end_time < time(NULL)){
+int timer_three_seconds(time_t start_time){
+  if (time(NULL) - start_time >=3){
     return 1;
   }
   return 0;

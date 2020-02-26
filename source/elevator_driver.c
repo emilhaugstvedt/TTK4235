@@ -49,7 +49,6 @@ void elevator_driver_clear_lights(elevator_t *e) {
 
 int elevator_driver_at_floor(elevator_t *e) {
   if (hardware_read_floor_sensor(0)) {
-    e->current_dir = HARDWARE_MOVEMENT_UP;
     return 1;
   }
   else if (hardware_read_floor_sensor(1)) {
@@ -59,7 +58,6 @@ int elevator_driver_at_floor(elevator_t *e) {
     return 1;
   }
   else if (hardware_read_floor_sensor(3)) {
-    e->current_dir = HARDWARE_MOVEMENT_DOWN;
     return 1;
   }
   else {
@@ -87,6 +85,7 @@ void elevator_driver_initialize_elevator(elevator_t *e){
   e->last_state = DOOR_OPEN;
   e->current_dir = HARDWARE_MOVEMENT_DOWN;
   e->current_floor = 0;
+  e->time = 0;
   for(int floor = 0; floor < HARDWARE_NUMBER_OF_FLOORS; floor++) {
     for (int order = 0; order < 3; order ++) {
       e->queue[floor][order] = 0;

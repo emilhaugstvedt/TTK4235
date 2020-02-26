@@ -128,7 +128,6 @@ if(e->current_dir == HARDWARE_MOVEMENT_DOWN){
   }
 
 int queue_handler_stop(elevator_t *e){
-  
   if(e->current_floor == TOP_FLOOR && e->queue[TOP_FLOOR][ORDER_DOWN]){
     return 1;
   }
@@ -139,12 +138,6 @@ int queue_handler_stop(elevator_t *e){
     return 1;
   }
   if ((e->queue[e->current_floor][ORDER_DOWN] || e->queue[e->current_floor][ORDER_INSIDE]) && e->current_dir == HARDWARE_MOVEMENT_DOWN){
-    return 1;
-  }
-  if (e->queue[e->current_floor][ORDER_UP] && e->current_dir == HARDWARE_MOVEMENT_DOWN){
-    return 1;
-  }
-  if (e->queue[e->current_floor][ORDER_DOWN] && e->current_dir == HARDWARE_MOVEMENT_UP){
     return 1;
   }
   return 0;
