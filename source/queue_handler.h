@@ -43,6 +43,12 @@ void queue_handler_current_floor(elevator_t *e);
 
 int queue_handler_stop(elevator_t *e);
 
-void queue_handler_lights(elevator_t *e);
+int queue_handler_order_at_current_floor(elevator_t *e);
+
+int queue_handler_emergency(elevator_t *e);
+
+int queue_handler_order_above(elevator_t *e);
+
+int queue_handler_order_below(elevator_t *e);
 
 #endif

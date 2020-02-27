@@ -9,6 +9,8 @@
 #define ORDER_DOWN 1
 #define ORDER_INSIDE 2
 #define NUMBER_OF_ORDERS 3
+#define TOP_FLOOR 3
+#define BOTTOM_FLOOR 0
 
 /**
  * @brief Enum used to define the different states of the elevator.
@@ -31,5 +33,8 @@ typedef struct {
   HardwareMovement current_dir;
   time_t time;
 } elevator_t;
+
+
+void elevator_lights(elevator_t *e);
 
 #endif
