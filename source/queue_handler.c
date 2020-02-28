@@ -94,7 +94,7 @@ int queue_handler_change_dir(elevator_t *e){
       return change_dir;
     }
 
-int queue_handler_emergency(elevator_t *e) {
+int queue_handler_choose_dir_emergency(elevator_t *e) {
   int change_dir = TRUE;
   
   if(e->current_dir == HARDWARE_MOVEMENT_UP){

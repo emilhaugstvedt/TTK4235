@@ -7,7 +7,7 @@
 #define DEFAULT_FLOOR 0
 
 void fsm_elevator_go(elevator_t *e){
-  while(!hardware_read_obstruction_signal()){
+  while(1){
     switch (e->current_state) {
       case IDLE:
         idle_state(e);
@@ -29,10 +29,13 @@ void fsm_elevator_go(elevator_t *e){
 }
 
 void idle_state(elevator_t *e) {
-  queue_handler_update_queue_outside(e);
-  queue_handler_update_queue_inside(e);
+  if(!hardware_read_stop_signal()){
+    queue_handler_update_queue_outside(e);
+    queue_handler_update_queue_inside(e);
+  }
   elevator_lights(e);
   if(hardware_read_stop_signal() && elevator_driver_at_floor(e)){
+    queue_handler_clear_queue(e);
     e->last_state = e->current_state;
     e->current_state = EMERGENCY_STOP;
   } 
@@ -47,7 +50,6 @@ void idle_state(elevator_t *e) {
     }
   }
   else if(e->last_state == DOOR_OPEN && !hardware_read_stop_signal()){
-    elevator_lights(e);
     if(queue_handler_order_at_current_floor(e)) {
       hardware_command_door_open(1);
       e->time = timer_start_time();
@@ -60,7 +62,8 @@ void idle_state(elevator_t *e) {
     }
   }
   else if (e->last_state == EMERGENCY_STOP) {
-    if (!queue_handler_emergency(e)) {
+    elevator_lights(e);
+    if (!queue_handler_choose_dir_emergency(e)) {
       e->last_state = e->current_state;
       e->current_state = MOVE;
 
@@ -97,14 +100,22 @@ void move_state(elevator_t *e) {
 
 
 void door_state(elevator_t *e) {
-  queue_handler_update_queue_outside(e);
-  queue_handler_update_queue_inside(e);
+  if(!hardware_read_stop_signal()){
+    queue_handler_update_queue_outside(e);
+    queue_handler_update_queue_inside(e);
+  }
+  else {
+    queue_handler_clear_queue(e);
+  }
   elevator_lights(e);
   if(queue_handler_order_at_current_floor(e)){
     e->time = timer_start_time();
   }
   queue_handler_order_complete(e);
   if(hardware_read_stop_signal()){
+    e->time = timer_start_time();
+  }
+  if (hardware_read_obstruction_signal()){
     e->time = timer_start_time();
   }
   if(timer_three_seconds(e->time) && !hardware_read_obstruction_signal() && elevator_driver_at_floor(e)) {
@@ -126,6 +137,7 @@ void emergency_stop_state(elevator_t *e) {
     e->current_state = IDLE;
   }
   else if(e->last_state == IDLE || e->last_state == DOOR_OPEN) {
+    queue_handler_clear_queue(e);
     if(e->time == 0){
       hardware_command_door_open(1);
       e->time = timer_start_time();

@@ -21,7 +21,7 @@ elevator_driver_initialize_elevator(e);
 elevator_driver_default_floor(e);
 
 printf("PLING!\n");
-printf("Heisen er nå klar til bruk. Enjoy.\n");
+printf("Heisen er nå klar til bruk. Enjoy!\n");
 
 fsm_elevator_go(e);
 

@@ -10,7 +10,12 @@
 #define FALSE 0
 
 #include "elevator.h"
-
+/**
+ * @brief Function that makes the elevator go in the direction current direction is. 
+ * 
+ * @param elevator_t Struct that contains all the information important for running the elevator.
+ */
+void elevator_driver_start(elevator_t *e);
 
 /**
  * @brief Function that stops the elevator when called.

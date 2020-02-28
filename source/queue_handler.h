@@ -13,7 +13,7 @@
 #define FALSE 0
 
 /**
-* @brief Function that clears the queue matrix in case of emergency stop while moving.
+* @brief Function that clears the queue matrix in case of emergency stop.
 * @param elevator_t Struct that contains all the information important for running the elevator.
 */
 void queue_handler_clear_queue(elevator_t *e);
@@ -85,7 +85,7 @@ int queue_handler_order_at_current_floor(elevator_t *e);
  * 
  * @returns 1 if direction and floor is set as it should, and 0 otherwise.
  */
-int queue_handler_emergency(elevator_t *e);
+int queue_handler_choose_dir_emergency(elevator_t *e);
 
 /**
  * @brief Function that decides if the elevator should pass a floor due to orders above or not.

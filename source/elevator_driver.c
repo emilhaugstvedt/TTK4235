@@ -3,6 +3,9 @@
 #include "elevator_driver.h"
 #include <stdlib.h>
 
+void elevator_driver_start(elevator_t *e) {
+  hardware_command_movement(e->current_dir);
+}
 
 void elevator_driver_stop() {
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
