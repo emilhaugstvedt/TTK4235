@@ -27,19 +27,19 @@ void elevator_driver_floor_passed(elevator_t *e){
 
 int elevator_driver_at_floor(elevator_t *e) {
   if (hardware_read_floor_sensor(0)) {
-    return 1;
+    return TRUE;
   }
   else if (hardware_read_floor_sensor(1)) {
-    return 1;
+    return TRUE;
   }
   else if (hardware_read_floor_sensor(2)) {
-    return 1;
+    return TRUE;
   }
   else if (hardware_read_floor_sensor(3)) {
-    return 1;
+    return TRUE;
   }
   else {
-    return 0;
+    return FALSE;
   }
 }
 
@@ -57,10 +57,10 @@ void elevator_driver_initialize_elevator(elevator_t *e){
   }
 }
 
-void elevator_driver_init_floor(elevator_t *e){
+void elevator_driver_default_floor(elevator_t *e){
     hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
     while(1){
-      if(hardware_read_floor_sensor(INIT_FLOOR)){
+      if(hardware_read_floor_sensor(DEFAULT_FLOOR)){
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
         break;
     }

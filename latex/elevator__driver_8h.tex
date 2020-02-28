@@ -1,0 +1,60 @@
+\hypertarget{elevator__driver_8h}{}\section{source/elevator\+\_\+driver.h File Reference}
+\label{elevator__driver_8h}\index{source/elevator\+\_\+driver.\+h@{source/elevator\+\_\+driver.\+h}}
+
+
+File that contains the functions needed for driving the elevator and getting information from the differnt sensors to upfate the floor.  
+
+
+{\ttfamily \#include \char`\"{}elevator.\+h\char`\"{}}\newline
+Include dependency graph for elevator\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{elevator__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{elevator__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{elevator__driver_8h_a5c5dcc1312c6767c2960b9bd15d4d80d}\label{elevator__driver_8h_a5c5dcc1312c6767c2960b9bd15d4d80d}} 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+F\+L\+O\+OR}~0
+\item 
+\mbox{\Hypertarget{elevator__driver_8h_aa8cecfc5c5c054d2875c03e77b7be15d}\label{elevator__driver_8h_aa8cecfc5c5c054d2875c03e77b7be15d}} 
+\#define {\bfseries T\+R\+UE}~1
+\item 
+\mbox{\Hypertarget{elevator__driver_8h_aa93f0eb578d23995850d61f7d61c55c1}\label{elevator__driver_8h_aa93f0eb578d23995850d61f7d61c55c1}} 
+\#define {\bfseries F\+A\+L\+SE}~0
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}\label{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}} 
+void \hyperlink{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}{elevator\+\_\+driver\+\_\+stop} ()
+\begin{DoxyCompactList}\small\item\em Function that stops the elevator when called. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}\label{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}} 
+void \hyperlink{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}{elevator\+\_\+driver\+\_\+default\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that makes the elvator go to the initial floor, 1 atm. Used before the other functions when starting the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}\label{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}} 
+void \hyperlink{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}{elevator\+\_\+driver\+\_\+floor\+\_\+passed} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that changes the last\+\_\+floor variable in the elevator struct to the last floor passed by the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}\label{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}} 
+int \hyperlink{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}{elevator\+\_\+driver\+\_\+at\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}\label{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}} 
+void \hyperlink{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that initializes the variables in the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}\label{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}} 
+void \hyperlink{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}{elevator\+\_\+driver\+\_\+range\+\_\+control} ()
+\begin{DoxyCompactList}\small\item\em Function that stops the elevator if its on its way passed floor number 1 and 4. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File that contains the functions needed for driving the elevator and getting information from the differnt sensors to upfate the floor. 
+

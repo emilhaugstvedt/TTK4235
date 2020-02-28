@@ -1,11 +1,13 @@
+/**
+ * @file fsm_elevator.h
+ * @brief File that contains the functions deciding what the elevator should do in the differnt states.
+ * 
+ */
+
 #ifndef FSM_ELEVATOR_H
 #define FSM_ELEVATOR_H
 
-#include "elevator_driver.h"
 #include "queue_handler.h"
-#include "elevator.h"
-
-#include <stdlib.h>
 
 
 /**

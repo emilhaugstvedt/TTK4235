@@ -60,3 +60,4 @@ void elevator_clear_all_lights(){
   hardware_command_order_light(2, HARDWARE_ORDER_INSIDE, 0);
   hardware_command_order_light(3, HARDWARE_ORDER_INSIDE, 0);
 }
+

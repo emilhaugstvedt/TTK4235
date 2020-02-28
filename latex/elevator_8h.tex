@@ -1,0 +1,89 @@
+\hypertarget{elevator_8h}{}\section{source/elevator.h File Reference}
+\label{elevator_8h}\index{source/elevator.\+h@{source/elevator.\+h}}
+
+
+File that contains the elevator struct and basic elevator functions.  
+
+
+{\ttfamily \#include \char`\"{}hardware.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+Include dependency graph for elevator.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{elevator_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{elevator_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structelevator__t}{elevator\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Struct that describes the elevator. It contains all the important variables for the process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{elevator_8h_a04e6314c901bd3977bcf0d5248744488}\label{elevator_8h_a04e6314c901bd3977bcf0d5248744488}} 
+\#define {\bfseries O\+R\+D\+E\+R\+\_\+\+UP}~0
+\item 
+\mbox{\Hypertarget{elevator_8h_af84b377eeda4a2685049e86b29a70be5}\label{elevator_8h_af84b377eeda4a2685049e86b29a70be5}} 
+\#define {\bfseries O\+R\+D\+E\+R\+\_\+\+D\+O\+WN}~1
+\item 
+\mbox{\Hypertarget{elevator_8h_a512aac99016300e247fe6a7610113c20}\label{elevator_8h_a512aac99016300e247fe6a7610113c20}} 
+\#define {\bfseries O\+R\+D\+E\+R\+\_\+\+I\+N\+S\+I\+DE}~2
+\item 
+\mbox{\Hypertarget{elevator_8h_a737083ef6aae7fcbf7b755e0add99b16}\label{elevator_8h_a737083ef6aae7fcbf7b755e0add99b16}} 
+\#define {\bfseries N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+O\+R\+D\+E\+RS}~3
+\item 
+\mbox{\Hypertarget{elevator_8h_a00bda456521a6369be7f072fc4f43d59}\label{elevator_8h_a00bda456521a6369be7f072fc4f43d59}} 
+\#define {\bfseries T\+O\+P\+\_\+\+F\+L\+O\+OR}~3
+\item 
+\mbox{\Hypertarget{elevator_8h_a360c832a52f523babde28630fe5561d3}\label{elevator_8h_a360c832a52f523babde28630fe5561d3}} 
+\#define {\bfseries B\+O\+T\+T\+O\+M\+\_\+\+F\+L\+O\+OR}~0
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{elevator_8h_a213dad15e4e24f653a4ac19140d9378a}\label{elevator_8h_a213dad15e4e24f653a4ac19140d9378a}} 
+enum \hyperlink{elevator_8h_a213dad15e4e24f653a4ac19140d9378a}{elevator\+\_\+state\+\_\+t} \{ {\bfseries I\+D\+LE}, 
+{\bfseries M\+O\+VE}, 
+{\bfseries E\+M\+E\+R\+G\+E\+N\+C\+Y\+\_\+\+S\+T\+OP}, 
+{\bfseries D\+O\+O\+R\+\_\+\+O\+P\+EN}
+ \}\begin{DoxyCompactList}\small\item\em Enum used to define the different states of the elevator. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}{elevator\+\_\+lights} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that controls all the lights in the elevator. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}\label{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}} 
+void \hyperlink{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}{elevator\+\_\+clear\+\_\+all\+\_\+lights} ()
+\begin{DoxyCompactList}\small\item\em Function that turns off all the outside and inside order lights. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File that contains the elevator struct and basic elevator functions. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}\label{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}} 
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+lights@{elevator\+\_\+lights}}
+\index{elevator\+\_\+lights@{elevator\+\_\+lights}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+lights()}{elevator\_lights()}}
+{\footnotesize\ttfamily void elevator\+\_\+lights (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that controls all the lights in the elevator. 
+
+The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It also turns on the stop light when the stopp button is pushed. 
+
+Definition at line 6 of file elevator.\+c.
+

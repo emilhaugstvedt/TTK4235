@@ -5,23 +5,13 @@
 #include <stdio.h>
 
 
-/*
-void timer_wait_for_three(){
-  int start_time = time(NULL);
-  int counter_time = time(NULL);
-  if (counter_time - start_time < 3 ){
-    counter_time = time(NULL);
-  }
-}
-*/
-
 time_t timer_start_time(){
   return time(NULL);
 }
 
 int timer_three_seconds(time_t start_time){
   if (time(NULL) - start_time >=3){
-    return 1;
+    return TRUE;
   }
-  return 0;
+  return FALSE;
 }

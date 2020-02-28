@@ -1,0 +1,11 @@
+<map id="source/hardware.h" name="source/hardware.h">
+<area shape="rect" id="node2" href="$elevator_8c_source.html" title="source/elevator.c" alt="" coords="99,155,221,181"/>
+<area shape="rect" id="node3" href="$elevator_8h.html" title="File that contains the elevator struct and basic elevator functions. " alt="" coords="265,80,388,107"/>
+<area shape="rect" id="node4" href="$elevator__driver_8c_source.html" title="source/elevator_driver.c" alt="" coords="365,229,526,256"/>
+<area shape="rect" id="node5" href="$elevator__driver_8h.html" title="File that contains the functions needed for driving the elevator and getting information from the dif..." alt="" coords="246,155,407,181"/>
+<area shape="rect" id="node6" href="$queue__handler_8h.html" title="Function that contains all the different operations performed on the queue matrix. " alt="" coords="129,229,289,256"/>
+<area shape="rect" id="node10" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="247,304,407,331"/>
+<area shape="rect" id="node7" href="$fsm__elevator_8c_source.html" title="source/fsm_elevator.c" alt="" coords="134,379,285,405"/>
+<area shape="rect" id="node8" href="$fsm__elevator_8h.html" title="File that contains the functions deciding what the elevator should do in the differnt states..." alt="" coords="21,304,171,331"/>
+<area shape="rect" id="node9" href="$main_8c_source.html" title="source/main.c" alt="" coords="5,379,109,405"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="source/fsm_elevator.h" name="source/fsm_elevator.h">
+<area shape="rect" id="node2" href="$queue__handler_8h.html" title="Function that contains all the different operations performed on the queue matrix. " alt="" coords="39,80,157,107"/>
+<area shape="rect" id="node3" href="$elevator__driver_8h.html" title="File that contains the functions needed for driving the elevator and getting information from the dif..." alt="" coords="39,155,157,181"/>
+<area shape="rect" id="node4" href="$elevator_8h.html" title="File that contains the elevator struct and basic elevator functions. " alt="" coords="59,229,137,256"/>
+<area shape="rect" id="node5" href="$hardware_8h.html" title="Driver for the elevator hardware. " alt="" coords="5,304,92,331"/>
+<area shape="rect" id="node6" href="$timer_8h.html" title="File that contains the timer module. " alt="" coords="116,304,179,331"/>
+</map>

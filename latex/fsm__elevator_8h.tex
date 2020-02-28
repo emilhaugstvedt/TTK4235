@@ -1,0 +1,142 @@
+\hypertarget{fsm__elevator_8h}{}\section{source/fsm\+\_\+elevator.h File Reference}
+\label{fsm__elevator_8h}\index{source/fsm\+\_\+elevator.\+h@{source/fsm\+\_\+elevator.\+h}}
+
+
+File that contains the functions deciding what the elevator should do in the differnt states.  
+
+
+{\ttfamily \#include \char`\"{}queue\+\_\+handler.\+h\char`\"{}}\newline
+Include dependency graph for fsm\+\_\+elevator.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{fsm__elevator_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{fsm__elevator_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{fsm__elevator_8h_a25d4b048860c891b45eefa2df09e2da6}{move\+\_\+state} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that takes care of everything happening while the elevator is in M\+O\+VE state. \end{DoxyCompactList}\item 
+void \hyperlink{fsm__elevator_8h_ab18323d0d8288582b3a604b64ba1700f}{idle\+\_\+state} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that takes care of everything happening while the elevator is in I\+D\+LE state. \end{DoxyCompactList}\item 
+void \hyperlink{fsm__elevator_8h_a6e1c7bfb2d29d318759dc12bcc46534a}{emergency\+\_\+stop\+\_\+state} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that takes care of everything happening while the elevator is in E\+M\+E\+R\+G\+E\+N\+C\+Y\+\_\+\+S\+T\+OP state. \end{DoxyCompactList}\item 
+void \hyperlink{fsm__elevator_8h_a3bd95f1165ffc670e1cfd6ac2b929b5a}{door\+\_\+state} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that takes care of everything happening while the elevator is in D\+O\+O\+R\+\_\+\+O\+P\+EN state. \end{DoxyCompactList}\item 
+void \hyperlink{fsm__elevator_8h_ab26d93b93ea5f0fb39c3c132f3bdd5e1}{fsm\+\_\+elevator\+\_\+go} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em The main fsm function that makes the elevator work. It contains a switch and switches between the differnt functions according to the elevators current state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File that contains the functions deciding what the elevator should do in the differnt states. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{fsm__elevator_8h_a3bd95f1165ffc670e1cfd6ac2b929b5a}\label{fsm__elevator_8h_a3bd95f1165ffc670e1cfd6ac2b929b5a}} 
+\index{fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}!door\+\_\+state@{door\+\_\+state}}
+\index{door\+\_\+state@{door\+\_\+state}!fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}}
+\subsubsection{\texorpdfstring{door\+\_\+state()}{door\_state()}}
+{\footnotesize\ttfamily void door\+\_\+state (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that takes care of everything happening while the elevator is in D\+O\+O\+R\+\_\+\+O\+P\+EN state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 97 of file fsm\+\_\+elevator.\+c.
+
+\mbox{\Hypertarget{fsm__elevator_8h_a6e1c7bfb2d29d318759dc12bcc46534a}\label{fsm__elevator_8h_a6e1c7bfb2d29d318759dc12bcc46534a}} 
+\index{fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}!emergency\+\_\+stop\+\_\+state@{emergency\+\_\+stop\+\_\+state}}
+\index{emergency\+\_\+stop\+\_\+state@{emergency\+\_\+stop\+\_\+state}!fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}}
+\subsubsection{\texorpdfstring{emergency\+\_\+stop\+\_\+state()}{emergency\_stop\_state()}}
+{\footnotesize\ttfamily void emergency\+\_\+stop\+\_\+state (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that takes care of everything happening while the elevator is in E\+M\+E\+R\+G\+E\+N\+C\+Y\+\_\+\+S\+T\+OP state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 117 of file fsm\+\_\+elevator.\+c.
+
+\mbox{\Hypertarget{fsm__elevator_8h_ab26d93b93ea5f0fb39c3c132f3bdd5e1}\label{fsm__elevator_8h_ab26d93b93ea5f0fb39c3c132f3bdd5e1}} 
+\index{fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}!fsm\+\_\+elevator\+\_\+go@{fsm\+\_\+elevator\+\_\+go}}
+\index{fsm\+\_\+elevator\+\_\+go@{fsm\+\_\+elevator\+\_\+go}!fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}}
+\subsubsection{\texorpdfstring{fsm\+\_\+elevator\+\_\+go()}{fsm\_elevator\_go()}}
+{\footnotesize\ttfamily void fsm\+\_\+elevator\+\_\+go (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+The main fsm function that makes the elevator work. It contains a switch and switches between the differnt functions according to the elevators current state. 
+
+
+\begin{DoxyItemize}
+\item 
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line 9 of file fsm\+\_\+elevator.\+c.
+
+\mbox{\Hypertarget{fsm__elevator_8h_ab18323d0d8288582b3a604b64ba1700f}\label{fsm__elevator_8h_ab18323d0d8288582b3a604b64ba1700f}} 
+\index{fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}!idle\+\_\+state@{idle\+\_\+state}}
+\index{idle\+\_\+state@{idle\+\_\+state}!fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}}
+\subsubsection{\texorpdfstring{idle\+\_\+state()}{idle\_state()}}
+{\footnotesize\ttfamily void idle\+\_\+state (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that takes care of everything happening while the elevator is in I\+D\+LE state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file fsm\+\_\+elevator.\+c.
+
+\mbox{\Hypertarget{fsm__elevator_8h_a25d4b048860c891b45eefa2df09e2da6}\label{fsm__elevator_8h_a25d4b048860c891b45eefa2df09e2da6}} 
+\index{fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}!move\+\_\+state@{move\+\_\+state}}
+\index{move\+\_\+state@{move\+\_\+state}!fsm\+\_\+elevator.\+h@{fsm\+\_\+elevator.\+h}}
+\subsubsection{\texorpdfstring{move\+\_\+state()}{move\_state()}}
+{\footnotesize\ttfamily void move\+\_\+state (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that takes care of everything happening while the elevator is in M\+O\+VE state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 76 of file fsm\+\_\+elevator.\+c.
+

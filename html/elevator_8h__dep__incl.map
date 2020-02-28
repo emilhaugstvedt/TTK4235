@@ -1,0 +1,10 @@
+<map id="source/elevator.h" name="source/elevator.h">
+<area shape="rect" id="node2" href="$elevator_8c_source.html" title="source/elevator.c" alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$elevator__driver_8c_source.html" title="source/elevator_driver.c" alt="" coords="69,155,230,181"/>
+<area shape="rect" id="node4" href="$elevator__driver_8h.html" title="File that contains the functions needed for driving the elevator and getting information from the dif..." alt="" coords="237,80,398,107"/>
+<area shape="rect" id="node5" href="$queue__handler_8h.html" title="Function that contains all the different operations performed on the queue matrix. " alt="" coords="255,155,415,181"/>
+<area shape="rect" id="node9" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="419,229,579,256"/>
+<area shape="rect" id="node6" href="$fsm__elevator_8c_source.html" title="source/fsm_elevator.c" alt="" coords="130,304,281,331"/>
+<area shape="rect" id="node7" href="$fsm__elevator_8h.html" title="File that contains the functions deciding what the elevator should do in the differnt states..." alt="" coords="243,229,394,256"/>
+<area shape="rect" id="node8" href="$main_8c_source.html" title="source/main.c" alt="" coords="305,304,409,331"/>
+</map>

@@ -1,6 +1,5 @@
-#include "elevator_driver.h"
+
 #include "queue_handler.h"
-#include "elevator.h"
 #include "fsm_elevator.h"
 #include <stdio.h>
 
@@ -38,7 +37,6 @@ void idle_state(elevator_t *e) {
     e->current_state = EMERGENCY_STOP;
   } 
   if(e->last_state == MOVE && !hardware_read_stop_signal()){
-    printf("%s\n", "IDLE MOVE" );
     if (elevator_driver_at_floor(e)) {
       if(e->time == 0){
         e->time = timer_start_time();
@@ -49,7 +47,6 @@ void idle_state(elevator_t *e) {
     }
   }
   else if(e->last_state == DOOR_OPEN && !hardware_read_stop_signal()){
-    printf("%s\n", "IDLE DOOR");
     elevator_lights(e);
     if(queue_handler_order_at_current_floor(e)) {
       hardware_command_door_open(1);
@@ -70,15 +67,15 @@ void idle_state(elevator_t *e) {
     }
   }
   else if(!hardware_read_stop_signal()) {
-    printf("%s\n", "IDLE ELSE" );
-    elevator_driver_init_floor(e);
+    elevator_driver_default_floor(e);
     elevator_driver_initialize_elevator(e);
+    e->last_state = DOOR_OPEN;
+    e->current_state = IDLE;
   }
 }
 
 
 void move_state(elevator_t *e) {
-  printf("%s\n", "MOVE" );
   elevator_driver_range_control();
   queue_handler_update_queue_outside(e);
   queue_handler_update_queue_inside(e);
@@ -100,7 +97,6 @@ void move_state(elevator_t *e) {
 
 
 void door_state(elevator_t *e) {
-  printf("%s\n", "DOOR" );
   queue_handler_update_queue_outside(e);
   queue_handler_update_queue_inside(e);
   elevator_lights(e);
@@ -126,7 +122,6 @@ void emergency_stop_state(elevator_t *e) {
   hardware_command_movement(HARDWARE_MOVEMENT_STOP);
   if(e->last_state == MOVE) {
     queue_handler_clear_queue(e);
-    printf("%s\n", "MOVE EMERGENCY!");
     e->last_state = e->current_state;
     e->current_state = IDLE;
   }

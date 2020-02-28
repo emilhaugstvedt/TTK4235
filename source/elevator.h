@@ -1,3 +1,9 @@
+/**
+ * @file elevator.h
+ * @brief File that contains the elevator struct and basic elevator functions.
+ * 
+ */
+
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
 
@@ -45,5 +51,8 @@ void elevator_lights(elevator_t *e);
 /**
  * @brief Function that turns off all the outside and inside order lights. 
  */
-void elevator_clear_all_lights(elevator_t *e);
+void elevator_clear_all_lights();
+
+
+
 #endif

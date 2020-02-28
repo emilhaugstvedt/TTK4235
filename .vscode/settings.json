@@ -3,6 +3,7 @@
         "queue_handler.h": "c",
         "elevator.h": "c",
         "hardware.h": "c",
-        "fsm_elevator.h": "c"
+        "fsm_elevator.h": "c",
+        "elevator_driver.h": "c"
     }
 }
