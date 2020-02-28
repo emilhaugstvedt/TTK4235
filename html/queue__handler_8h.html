@@ -166,8 +166,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function that changes the current direction the the elevator. </p>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2020</dd></dl>
-<p>If current direction is up, the function will first search for orders above before searching for orders below afterwards. Likewise, if current direction is down, the functtion first search for orders below, before searching for orders above. When the elevator is in idle state it will switch between searching for orders above and below and return 1 as long as no order is found. When an order is found it wil return 0. </p>
+<p>If current direction is up, the function will first search for orders above before searching for orders below afterwards. Likewise, if current direction is down, the functtion first search for orders below, before searching for orders above. When the elevator is in idle state it will switch between searching for orders above and below and return 1 as long as no order is found. When an order is found it wil return 0. This means that as long as the elevator returns 1 it has not found an order. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if the elevator should change direction and 0 if not. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="queue__handler_8c_source.html#l00051">51</a> of file <a class="el" href="queue__handler_8c_source.html">queue_handler.c</a>.</p>
 
@@ -387,7 +392,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Function that returns 1 if the elevator should stop at current floor, and 0 if not. </p>
-<p>The function first check if the current floor is top or bottom floor and if there is an order at one of these floors. It returns 1 if both is true. Afterwards, if the elevator is moving upwards, it searches for orders up or inside above the current floor before stopping for order down. Likewise, if the elevator is moving downwards, it searches for orders down or inside below the current floor before stopping for order up. </p>
+<p>The function first check if the current floor is top or bottom floor and if there is an order at one of these floors. It returns 1 if both is true. Afterwards, if the elevator is moving upwards, it searches for orders up or inside above the current floor before stopping for order down. Likewise, if the elevator is moving downwards, it searches for orders down or inside below the current floor before stopping for order up.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if the elevator should stop and 0 otherwise. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="queue__handler_8c_source.html#l00144">144</a> of file <a class="el" href="queue__handler_8c_source.html">queue_handler.c</a>.</p>
 

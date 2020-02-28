@@ -38,16 +38,12 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \mbox{\Hypertarget{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}\label{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}} 
 void \hyperlink{elevator__driver_8h_a4de343ff2c5827e8bf59e63631420d71}{elevator\+\_\+driver\+\_\+stop} ()
 \begin{DoxyCompactList}\small\item\em Function that stops the elevator when called. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}\label{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}} 
 void \hyperlink{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}{elevator\+\_\+driver\+\_\+default\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
-\begin{DoxyCompactList}\small\item\em Function that makes the elvator go to the initial floor, 1 atm. Used before the other functions when starting the elevator. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}\label{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}} 
+\begin{DoxyCompactList}\small\item\em Function that makes the elvator go to the default floor. Used before the other functions when starting the elevator. \end{DoxyCompactList}\item 
 void \hyperlink{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}{elevator\+\_\+driver\+\_\+floor\+\_\+passed} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
-\begin{DoxyCompactList}\small\item\em Function that changes the last\+\_\+floor variable in the elevator struct to the last floor passed by the elevator. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}\label{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}} 
+\begin{DoxyCompactList}\small\item\em Function that updates the current floor varible when a floor is passed. \end{DoxyCompactList}\item 
 int \hyperlink{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}{elevator\+\_\+driver\+\_\+at\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}\label{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}} 
 void \hyperlink{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that initializes the variables in the elevator. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}\label{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}} 
@@ -57,4 +53,83 @@ void \hyperlink{elevator__driver_8h_ae0c3fece3603c485ddafc4e4da0827ce}{elevator\
 
 \subsection{Detailed Description}
 File that contains the functions needed for driving the elevator and getting information from the differnt sensors to upfate the floor. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}\label{elevator__driver_8h_a307e4b8bd67527bb6e0d012a47105caf}} 
+\index{elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}!elevator\+\_\+driver\+\_\+at\+\_\+floor@{elevator\+\_\+driver\+\_\+at\+\_\+floor}}
+\index{elevator\+\_\+driver\+\_\+at\+\_\+floor@{elevator\+\_\+driver\+\_\+at\+\_\+floor}!elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+driver\+\_\+at\+\_\+floor()}{elevator\_driver\_at\_floor()}}
+{\footnotesize\ttfamily int elevator\+\_\+driver\+\_\+at\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file elevator\+\_\+driver.\+c.
+
+\mbox{\Hypertarget{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}\label{elevator__driver_8h_a93852d87e388c89fcd8f4f4e7c7e39ba}} 
+\index{elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}!elevator\+\_\+driver\+\_\+default\+\_\+floor@{elevator\+\_\+driver\+\_\+default\+\_\+floor}}
+\index{elevator\+\_\+driver\+\_\+default\+\_\+floor@{elevator\+\_\+driver\+\_\+default\+\_\+floor}!elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+driver\+\_\+default\+\_\+floor()}{elevator\_driver\_default\_floor()}}
+{\footnotesize\ttfamily void elevator\+\_\+driver\+\_\+default\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that makes the elvator go to the default floor. Used before the other functions when starting the elevator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file elevator\+\_\+driver.\+c.
+
+\mbox{\Hypertarget{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}\label{elevator__driver_8h_a149559f37920e54d8ccb75fd40100570}} 
+\index{elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}!elevator\+\_\+driver\+\_\+floor\+\_\+passed@{elevator\+\_\+driver\+\_\+floor\+\_\+passed}}
+\index{elevator\+\_\+driver\+\_\+floor\+\_\+passed@{elevator\+\_\+driver\+\_\+floor\+\_\+passed}!elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+driver\+\_\+floor\+\_\+passed()}{elevator\_driver\_floor\_passed()}}
+{\footnotesize\ttfamily void elevator\+\_\+driver\+\_\+floor\+\_\+passed (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that updates the current floor varible when a floor is passed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file elevator\+\_\+driver.\+c.
+
+\mbox{\Hypertarget{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}\label{elevator__driver_8h_ad3b77f2b0f5eaa8f31a4d997d66a38d6}} 
+\index{elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}!elevator\+\_\+driver\+\_\+initialize\+\_\+elevator@{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator}}
+\index{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator@{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator}!elevator\+\_\+driver.\+h@{elevator\+\_\+driver.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+driver\+\_\+initialize\+\_\+elevator()}{elevator\_driver\_initialize\_elevator()}}
+{\footnotesize\ttfamily void elevator\+\_\+driver\+\_\+initialize\+\_\+elevator (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that initializes the variables in the elevator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file elevator\+\_\+driver.\+c.
 

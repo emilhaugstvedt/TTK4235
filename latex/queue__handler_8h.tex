@@ -6,8 +6,7 @@ Function that contains all the different operations performed on the queue matri
 
 
 {\ttfamily \#include \char`\"{}elevator\+\_\+driver.\+h\char`\"{}}\newline
-Include dependency graph for queue\+\_\+handler.\+h\+:
-\nopagebreak
+Include dependency graph for queue\+\_\+handler.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -76,10 +75,15 @@ your name (\href{mailto:you@domain.com}{\tt you@domain.\+com})
 
 Function that changes the current direction the the elevator. 
 
-\begin{DoxyCopyright}{Copyright}
-Copyright (c) 2020
-\end{DoxyCopyright}
-If current direction is up, the function will first search for orders above before searching for orders below afterwards. Likewise, if current direction is down, the functtion first search for orders below, before searching for orders above. When the elevator is in idle state it will switch between searching for orders above and below and return 1 as long as no order is found. When an order is found it wil return 0. 
+If current direction is up, the function will first search for orders above before searching for orders below afterwards. Likewise, if current direction is down, the functtion first search for orders below, before searching for orders above. When the elevator is in idle state it will switch between searching for orders above and below and return 1 as long as no order is found. When an order is found it wil return 0. This means that as long as the elevator returns 1 it has not found an order. 
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the elevator should change direction and 0 if not. 
+\end{DoxyReturn}
+
 
 Definition at line 51 of file queue\+\_\+handler.\+c.
 
@@ -240,7 +244,17 @@ Definition at line 190 of file queue\+\_\+handler.\+c.
 
 Function that returns 1 if the elevator should stop at current floor, and 0 if not. 
 
-The function first check if the current floor is top or bottom floor and if there is an order at one of these floors. It returns 1 if both is true. Afterwards, if the elevator is moving upwards, it searches for orders up or inside above the current floor before stopping for order down. Likewise, if the elevator is moving downwards, it searches for orders down or inside below the current floor before stopping for order up. 
+The function first check if the current floor is top or bottom floor and if there is an order at one of these floors. It returns 1 if both is true. Afterwards, if the elevator is moving upwards, it searches for orders up or inside above the current floor before stopping for order down. Likewise, if the elevator is moving downwards, it searches for orders down or inside below the current floor before stopping for order up.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if the elevator should stop and 0 otherwise. 
+\end{DoxyReturn}
+
 
 Definition at line 144 of file queue\+\_\+handler.\+c.
 
