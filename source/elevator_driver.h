@@ -4,11 +4,6 @@
 
 #include "elevator.h"
 
-/**
- * @brief
- *
- */
-void elevator_driver_go(elevator_t *e);
 
 /**
  * @brief Function that stops the elevator when called.
@@ -26,19 +21,18 @@ void elevator_driver_init_floor(elevator_t *e);
 void elevator_driver_floor_passed(elevator_t *e);
 
 /**
- * @brief Function taht clears the lights of floor upon arrival.
- */
-void elevator_driver_clear_lights(elevator_t *e);
-
-/**
  * @brief Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not.
  */
 int elevator_driver_at_floor(elevator_t *e);
 
-void elevator_driver_clear_all_lights();
-
+/**
+ * @brief Function that initializes the variables in the elevator.
+ */
 void elevator_driver_initialize_elevator(elevator_t *e);
 
+/**
+ * @brief Function that stops the elevator if its on its way passed floor number 1 and 4.
+ */
 void elevator_driver_range_control();
 
 #endif

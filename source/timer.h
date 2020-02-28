@@ -4,12 +4,14 @@
 #include <stdlib.h>
 
 /**
- * @brief
+ * @brief Function that returns current time.
  */
 time_t timer_start_time();
 
 /**
- * @brief Function that returns a start time. Used for saving a timestamp in the elevator.
+ * @brief Function that returns 1 if three seconds is passed. 
+ * 
+ * THe function takes in a time and returns 1 when the differnce between stat_time and current time is bigger or equal to three. 
  */
 int timer_three_seconds(time_t start_time);
 

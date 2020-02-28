@@ -57,13 +57,13 @@ void idle_state(elevator_t *e) {
       e->last_state = e->current_state;
       e->current_state = DOOR_OPEN;
     }
-    else if (queue_handler_change_dir(e) == 0){
+    else if (!queue_handler_change_dir(e)){
       e->last_state = e->current_state;
       e->current_state = MOVE;
     }
   }
   else if (e->last_state == EMERGENCY_STOP) {
-    if (queue_handler_emergency(e)) {
+    if (!queue_handler_emergency(e)) {
       e->last_state = e->current_state;
       e->current_state = MOVE;
 
