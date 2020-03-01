@@ -14,7 +14,8 @@ Include dependency graph for elevator.\+h\+:\nopagebreak
 \includegraphics[width=243pt]{elevator_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -62,7 +63,6 @@ enum \hyperlink{elevator_8h_a213dad15e4e24f653a4ac19140d9378a}{elevator\+\_\+sta
 \item 
 void \hyperlink{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}{elevator\+\_\+lights} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that controls all the lights in the elevator. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}\label{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}} 
 void \hyperlink{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}{elevator\+\_\+clear\+\_\+all\+\_\+lights} ()
 \begin{DoxyCompactList}\small\item\em Function that turns off all the outside and inside order lights. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -73,6 +73,25 @@ File that contains the elevator struct and basic elevator functions.
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}\label{elevator_8h_aa9ed29e4aeafe0cf248f52795a139160}} 
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+clear\+\_\+all\+\_\+lights@{elevator\+\_\+clear\+\_\+all\+\_\+lights}}
+\index{elevator\+\_\+clear\+\_\+all\+\_\+lights@{elevator\+\_\+clear\+\_\+all\+\_\+lights}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+clear\+\_\+all\+\_\+lights()}{elevator\_clear\_all\_lights()}}
+{\footnotesize\ttfamily void elevator\+\_\+clear\+\_\+all\+\_\+lights (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function that turns off all the outside and inside order lights. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file elevator.\+c.
+
 \mbox{\Hypertarget{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}\label{elevator_8h_a9b92734cb9648a7847c10238559bdd9d}} 
 \index{elevator.\+h@{elevator.\+h}!elevator\+\_\+lights@{elevator\+\_\+lights}}
 \index{elevator\+\_\+lights@{elevator\+\_\+lights}!elevator.\+h@{elevator.\+h}}
@@ -83,7 +102,12 @@ File that contains the elevator struct and basic elevator functions.
 
 Function that controls all the lights in the elevator. 
 
-The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It also turns on the stop light when the stopp button is pushed. 
+The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It also turns on the stop light when the stop button is pushed. 
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
 
 Definition at line 6 of file elevator.\+c.
 

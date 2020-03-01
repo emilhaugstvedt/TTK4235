@@ -113,6 +113,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a6abc5fff805907d853b5563269350d8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator__driver_8h.html#a6abc5fff805907d853b5563269350d8e">elevator_driver_start</a> (<a class="el" href="structelevator__t.html">elevator_t</a> *e)</td></tr>
+<tr class="memdesc:a6abc5fff805907d853b5563269350d8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that makes the elevator go in the direction current direction is.  <a href="#a6abc5fff805907d853b5563269350d8e">More...</a><br /></td></tr>
+<tr class="separator:a6abc5fff805907d853b5563269350d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4de343ff2c5827e8bf59e63631420d71"><td class="memItemLeft" align="right" valign="top"><a id="a4de343ff2c5827e8bf59e63631420d71"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator__driver_8h.html#a4de343ff2c5827e8bf59e63631420d71">elevator_driver_stop</a> ()</td></tr>
 <tr class="memdesc:a4de343ff2c5827e8bf59e63631420d71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that stops the elevator when called. <br /></td></tr>
@@ -158,12 +161,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 <p>Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00028">28</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00030">30</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
 
 </div>
 </div>
@@ -186,12 +189,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 <p>Function that makes the elvator go to the default floor. Used before the other functions when starting the elevator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00060">60</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00062">62</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
 
 </div>
 </div>
@@ -214,12 +217,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 <p>Function that updates the current floor varible when a floor is passed. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00012">12</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00015">15</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
 
 </div>
 </div>
@@ -242,12 +245,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 <p>Function that initializes the variables in the elevator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>Struct that contains all the information important for running the elevator. </td></tr>
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00046">46</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00048">48</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
+
+</div>
+</div>
+<a id="a6abc5fff805907d853b5563269350d8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6abc5fff805907d853b5563269350d8e">&#9670;&nbsp;</a></span>elevator_driver_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elevator_driver_start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structelevator__t.html">elevator_t</a> *&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that makes the elevator go in the direction current direction is. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator__driver_8c_source.html#l00006">6</a> of file <a class="el" href="elevator__driver_8c_source.html">elevator_driver.c</a>.</p>
 
 </div>
 </div>

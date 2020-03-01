@@ -2,7 +2,7 @@
 \label{queue__handler_8h}\index{source/queue\+\_\+handler.\+h@{source/queue\+\_\+handler.\+h}}
 
 
-Function that contains all the different operations performed on the queue matrix.  
+File that contains all the different function that performs operations on the queue matrix.  
 
 
 {\ttfamily \#include \char`\"{}elevator\+\_\+driver.\+h\char`\"{}}\newline
@@ -33,20 +33,20 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{queue__handler_8h_ae5d2620687480f2b74abf412586cc496}{queue\+\_\+handler\+\_\+clear\+\_\+queue} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
-\begin{DoxyCompactList}\small\item\em Function that clears the queue matrix in case of emergency stop while moving. \end{DoxyCompactList}\item 
-void \hyperlink{queue__handler_8h_a185d3676b58fa2736cc0be19d22d7e30}{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function that clears the queue matrix in case of emergency stop. \end{DoxyCompactList}\item 
+void \hyperlink{queue__handler_8h_aca66cd1422f2b62388ee754fad6b4125}{queue\+\_\+handler\+\_\+update\+\_\+outside} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that searches for orders and updates the queue. \end{DoxyCompactList}\item 
 int \hyperlink{queue__handler_8h_ac05310be57c5b344e7a47437cd86b99b}{queue\+\_\+handler\+\_\+change\+\_\+dir} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
-\begin{DoxyCompactList}\small\item\em Function that changes the current direction the the elevator. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function that changesqueue\+\_\+hj the current direction the the elevator. \end{DoxyCompactList}\item 
 void \hyperlink{queue__handler_8h_ab4637cd308b26a882949b7a018822a81}{queue\+\_\+handler\+\_\+order\+\_\+complete} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that changes the number in the queue from 1 to 0 after an order is complete. \end{DoxyCompactList}\item 
-void \hyperlink{queue__handler_8h_acf89f0770228e9bd558d6314ec4c2aed}{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+void \hyperlink{queue__handler_8h_a6da1c256225849553668252dd28ca065}{queue\+\_\+handler\+\_\+update\+\_\+inside} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that searches for orders from inside the elevator and updates the queue matrix if any orders. \end{DoxyCompactList}\item 
 int \hyperlink{queue__handler_8h_a268a7a574af150a80c54ba8725315875}{queue\+\_\+handler\+\_\+stop} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that returns 1 if the elevator should stop at current floor, and 0 if not. \end{DoxyCompactList}\item 
 int \hyperlink{queue__handler_8h_aade312fd5d8424ebd3967f9e75473a6f}{queue\+\_\+handler\+\_\+order\+\_\+at\+\_\+current\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that checks if there is an order of any type at the current floor. \end{DoxyCompactList}\item 
-int \hyperlink{queue__handler_8h_af5c0f9018cafb915e72da3aad556684e}{queue\+\_\+handler\+\_\+emergency} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
+int \hyperlink{queue__handler_8h_abc7f32bae4824ca964bfcf123dfdd75d}{queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function for chosing the next direction for the elevator when the elevator is between floors in emergency state. \end{DoxyCompactList}\item 
 int \hyperlink{queue__handler_8h_a4d8004bb433b559e61cea614ac3b2ce2}{queue\+\_\+handler\+\_\+pass\+\_\+floor} (\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$e)
 \begin{DoxyCompactList}\small\item\em Function that decides if the elevator should pass a floor due to orders above or not. \end{DoxyCompactList}\item 
@@ -57,7 +57,7 @@ int \hyperlink{queue__handler_8h_a8f6f1c58428646fa957d97d9b1656a30}{queue\+\_\+h
 
 
 \subsection{Detailed Description}
-Function that contains all the different operations performed on the queue matrix. 
+File that contains all the different function that performs operations on the queue matrix. 
 
 \begin{DoxyAuthor}{Author}
 your name (\href{mailto:you@domain.com}{\tt you@domain.\+com}) 
@@ -73,11 +73,11 @@ your name (\href{mailto:you@domain.com}{\tt you@domain.\+com})
 
 
 
-Function that changes the current direction the the elevator. 
+Function that changesqueue\+\_\+hj the current direction the the elevator. 
 
 If current direction is up, the function will first search for orders above before searching for orders below afterwards. Likewise, if current direction is down, the functtion first search for orders below, before searching for orders above. When the elevator is in idle state it will switch between searching for orders above and below and return 1 as long as no order is found. When an order is found it wil return 0. This means that as long as the elevator returns 1 it has not found an order. 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -87,30 +87,11 @@ If current direction is up, the function will first search for orders above befo
 
 Definition at line 51 of file queue\+\_\+handler.\+c.
 
-\mbox{\Hypertarget{queue__handler_8h_ae5d2620687480f2b74abf412586cc496}\label{queue__handler_8h_ae5d2620687480f2b74abf412586cc496}} 
-\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+clear\+\_\+queue@{queue\+\_\+handler\+\_\+clear\+\_\+queue}}
-\index{queue\+\_\+handler\+\_\+clear\+\_\+queue@{queue\+\_\+handler\+\_\+clear\+\_\+queue}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
-\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+clear\+\_\+queue()}{queue\_handler\_clear\_queue()}}
-{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+clear\+\_\+queue (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
-
-
-
-Function that clears the queue matrix in case of emergency stop while moving. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 6 of file queue\+\_\+handler.\+c.
-
-\mbox{\Hypertarget{queue__handler_8h_af5c0f9018cafb915e72da3aad556684e}\label{queue__handler_8h_af5c0f9018cafb915e72da3aad556684e}} 
-\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+emergency@{queue\+\_\+handler\+\_\+emergency}}
-\index{queue\+\_\+handler\+\_\+emergency@{queue\+\_\+handler\+\_\+emergency}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
-\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+emergency()}{queue\_handler\_emergency()}}
-{\footnotesize\ttfamily int queue\+\_\+handler\+\_\+emergency (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{queue__handler_8h_abc7f32bae4824ca964bfcf123dfdd75d}\label{queue__handler_8h_abc7f32bae4824ca964bfcf123dfdd75d}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency@{queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency}}
+\index{queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency@{queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency()}{queue\_handler\_choose\_dir\_emergency()}}
+{\footnotesize\ttfamily int queue\+\_\+handler\+\_\+choose\+\_\+dir\+\_\+emergency (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
 
 
 
@@ -125,6 +106,25 @@ If the elevator stops between floors we need to have a differnt function to choo
 
 Definition at line 97 of file queue\+\_\+handler.\+c.
 
+\mbox{\Hypertarget{queue__handler_8h_ae5d2620687480f2b74abf412586cc496}\label{queue__handler_8h_ae5d2620687480f2b74abf412586cc496}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+clear\+\_\+queue@{queue\+\_\+handler\+\_\+clear\+\_\+queue}}
+\index{queue\+\_\+handler\+\_\+clear\+\_\+queue@{queue\+\_\+handler\+\_\+clear\+\_\+queue}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+clear\+\_\+queue()}{queue\_handler\_clear\_queue()}}
+{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+clear\+\_\+queue (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function that clears the queue matrix in case of emergency stop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6 of file queue\+\_\+handler.\+c.
+
 \mbox{\Hypertarget{queue__handler_8h_a6cea3d2867bde86ca19de6b6aec905ca}\label{queue__handler_8h_a6cea3d2867bde86ca19de6b6aec905ca}} 
 \index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+order\+\_\+above@{queue\+\_\+handler\+\_\+order\+\_\+above}}
 \index{queue\+\_\+handler\+\_\+order\+\_\+above@{queue\+\_\+handler\+\_\+order\+\_\+above}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
@@ -137,7 +137,7 @@ Function that iterates through the above floors and searches for orders of any t
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -159,7 +159,7 @@ Function that checks if there is an order of any type at the current floor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -181,7 +181,7 @@ Function that iterates through the below floors and searches for orders of any t
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -203,7 +203,7 @@ Function that changes the number in the queue from 1 to 0 after an order is comp
 
 If any type of order at current floor the function will remove the order from the order matrix. 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 
@@ -224,7 +224,7 @@ If the elevator is moving upwards, the function will first iterate through the a
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -248,7 +248,7 @@ The function first check if the current floor is top or bottom floor and if ther
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -258,11 +258,11 @@ The function first check if the current floor is top or bottom floor and if ther
 
 Definition at line 144 of file queue\+\_\+handler.\+c.
 
-\mbox{\Hypertarget{queue__handler_8h_acf89f0770228e9bd558d6314ec4c2aed}\label{queue__handler_8h_acf89f0770228e9bd558d6314ec4c2aed}} 
-\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside@{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside}}
-\index{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside@{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
-\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside()}{queue\_handler\_update\_queue\_inside()}}
-{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+inside (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{queue__handler_8h_a6da1c256225849553668252dd28ca065}\label{queue__handler_8h_a6da1c256225849553668252dd28ca065}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+update\+\_\+inside@{queue\+\_\+handler\+\_\+update\+\_\+inside}}
+\index{queue\+\_\+handler\+\_\+update\+\_\+inside@{queue\+\_\+handler\+\_\+update\+\_\+inside}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+update\+\_\+inside()}{queue\_handler\_update\_inside()}}
+{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+update\+\_\+inside (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
 
 
 
@@ -270,18 +270,18 @@ Function that searches for orders from inside the elevator and updates the queue
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 35 of file queue\+\_\+handler.\+c.
 
-\mbox{\Hypertarget{queue__handler_8h_a185d3676b58fa2736cc0be19d22d7e30}\label{queue__handler_8h_a185d3676b58fa2736cc0be19d22d7e30}} 
-\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside@{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside}}
-\index{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside@{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
-\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside()}{queue\_handler\_update\_queue\_outside()}}
-{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+update\+\_\+queue\+\_\+outside (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{queue__handler_8h_aca66cd1422f2b62388ee754fad6b4125}\label{queue__handler_8h_aca66cd1422f2b62388ee754fad6b4125}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+handler\+\_\+update\+\_\+outside@{queue\+\_\+handler\+\_\+update\+\_\+outside}}
+\index{queue\+\_\+handler\+\_\+update\+\_\+outside@{queue\+\_\+handler\+\_\+update\+\_\+outside}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+handler\+\_\+update\+\_\+outside()}{queue\_handler\_update\_outside()}}
+{\footnotesize\ttfamily void queue\+\_\+handler\+\_\+update\+\_\+outside (\begin{DoxyParamCaption}\item[{\hyperlink{structelevator__t}{elevator\+\_\+t} $\ast$}]{e }\end{DoxyParamCaption})}
 
 
 
@@ -289,7 +289,7 @@ Function that searches for orders and updates the queue.
 
 
 \begin{DoxyParams}{Parameters}
-{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & Struct that contains all the information important for running the elevator. \\
+{\em \hyperlink{structelevator__t}{elevator\+\_\+t}} & $\ast$e, pointer to a struct that contains all the information important for running the elevator. \\
 \hline
 \end{DoxyParams}
 

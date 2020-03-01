@@ -24,7 +24,6 @@ void elevator_driver_floor_passed(elevator_t *e){
   }
   if (hardware_read_floor_sensor(3)) {
     e->current_floor = 3;
-    elevator_driver_stop();
   }
 }
 

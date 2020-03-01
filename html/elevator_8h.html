@@ -145,9 +145,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a9b92734cb9648a7847c10238559bdd9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#a9b92734cb9648a7847c10238559bdd9d">elevator_lights</a> (<a class="el" href="structelevator__t.html">elevator_t</a> *e)</td></tr>
 <tr class="memdesc:a9b92734cb9648a7847c10238559bdd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that controls all the lights in the elevator.  <a href="#a9b92734cb9648a7847c10238559bdd9d">More...</a><br /></td></tr>
 <tr class="separator:a9b92734cb9648a7847c10238559bdd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9ed29e4aeafe0cf248f52795a139160"><td class="memItemLeft" align="right" valign="top"><a id="aa9ed29e4aeafe0cf248f52795a139160"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#aa9ed29e4aeafe0cf248f52795a139160">elevator_clear_all_lights</a> ()</td></tr>
-<tr class="memdesc:aa9ed29e4aeafe0cf248f52795a139160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that turns off all the outside and inside order lights. <br /></td></tr>
+<tr class="memitem:aa9ed29e4aeafe0cf248f52795a139160"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elevator_8h.html#aa9ed29e4aeafe0cf248f52795a139160">elevator_clear_all_lights</a> ()</td></tr>
+<tr class="memdesc:aa9ed29e4aeafe0cf248f52795a139160"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that turns off all the outside and inside order lights.  <a href="#aa9ed29e4aeafe0cf248f52795a139160">More...</a><br /></td></tr>
 <tr class="separator:aa9ed29e4aeafe0cf248f52795a139160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -155,6 +154,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 
 <p class="definition">Definition in file <a class="el" href="elevator_8h_source.html">elevator.h</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="aa9ed29e4aeafe0cf248f52795a139160"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9ed29e4aeafe0cf248f52795a139160">&#9670;&nbsp;</a></span>elevator_clear_all_lights()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void elevator_clear_all_lights </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function that turns off all the outside and inside order lights. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00051">51</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
+
+</div>
+</div>
 <a id="a9b92734cb9648a7847c10238559bdd9d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9b92734cb9648a7847c10238559bdd9d">&#9670;&nbsp;</a></span>elevator_lights()</h2>
 
@@ -172,7 +198,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev
 </div><div class="memdoc">
 
 <p>Function that controls all the lights in the elevator. </p>
-<p>The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It also turns on the stop light when the stopp button is pushed. </p>
+<p>The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It also turns on the stop light when the stop button is pushed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="structelevator__t.html" title="Struct that describes the elevator. It contains all the important variables for the process...">elevator_t</a></td><td>*e, pointer to a struct that contains all the information important for running the elevator. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p class="definition">Definition at line <a class="el" href="elevator_8c_source.html#l00006">6</a> of file <a class="el" href="elevator_8c_source.html">elevator.c</a>.</p>
 

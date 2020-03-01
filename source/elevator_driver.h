@@ -13,7 +13,7 @@
 /**
  * @brief Function that makes the elevator go in the direction current direction is. 
  * 
- * @param elevator_t Struct that contains all the information important for running the elevator.
+  * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 void elevator_driver_start(elevator_t *e);
 
@@ -24,25 +24,25 @@ void elevator_driver_stop();
 
 /**
  * @brief Function that makes the elvator go to the default floor. Used before the other functions when starting the elevator.
- * @param elevator_t Struct that contains all the information important for running the elevator.
+  * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 void elevator_driver_default_floor(elevator_t *e);
 
 /**
  * @brief Function that updates the current floor varible when a floor is passed. 
- * @param elevator_t Struct that contains all the information important for running the elevator.
+  * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 void elevator_driver_floor_passed(elevator_t *e);
 
 /**
  * @brief Function that returns 1 if the elevator is at a floor. Used when deciding to open the doors or not.
- * @param elevator_t Struct that contains all the information important for running the elevator.
+  * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 int elevator_driver_at_floor(elevator_t *e);
 
 /**
  * @brief Function that initializes the variables in the elevator.
- * @param elevator_t Struct that contains all the information important for running the elevator.
+  * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 void elevator_driver_initialize_elevator(elevator_t *e);
 

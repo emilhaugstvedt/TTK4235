@@ -30,8 +30,8 @@ void fsm_elevator_go(elevator_t *e){
 
 void idle_state(elevator_t *e) {
   if(!hardware_read_stop_signal()){
-    queue_handler_update_queue_outside(e);
-    queue_handler_update_queue_inside(e);
+    queue_handler_update_outside(e);
+    queue_handler_update_inside(e);
   }
   elevator_lights(e);
   if(hardware_read_stop_signal() && elevator_driver_at_floor(e)){
@@ -80,8 +80,8 @@ void idle_state(elevator_t *e) {
 
 void move_state(elevator_t *e) {
   elevator_driver_range_control();
-  queue_handler_update_queue_outside(e);
-  queue_handler_update_queue_inside(e);
+  queue_handler_update_outside(e);
+  queue_handler_update_inside(e);
   elevator_lights(e);
   elevator_driver_floor_passed(e);
   if(hardware_read_stop_signal()){
@@ -94,15 +94,15 @@ void move_state(elevator_t *e) {
     e->current_state = IDLE;
   }
   else {
-    hardware_command_movement(e->current_dir);
+    elevator_driver_start(e);
   }
 }
 
 
 void door_state(elevator_t *e) {
   if(!hardware_read_stop_signal()){
-    queue_handler_update_queue_outside(e);
-    queue_handler_update_queue_inside(e);
+    queue_handler_update_outside(e);
+    queue_handler_update_inside(e);
   }
   else {
     queue_handler_clear_queue(e);

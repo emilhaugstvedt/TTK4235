@@ -1,0 +1,20 @@
+digraph "source/elevator_driver.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node6 [label="source/elevator_driver.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="source/elevator_driver.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$elevator__driver_8c_source.html"];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="source/queue_handler.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$queue__handler_8h.html",tooltip="File that contains all the different function that performs operations on the queue matrix..."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="source/fsm_elevator.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fsm__elevator_8c_source.html"];
+  Node8 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="source/fsm_elevator.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$fsm__elevator_8h.html",tooltip="File that contains the functions deciding what the elevator should do in the differnt states..."];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="source/main.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8c_source.html"];
+  Node8 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="source/queue_handler.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$queue__handler_8c_source.html"];
+  Node6 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

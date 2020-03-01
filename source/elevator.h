@@ -44,12 +44,14 @@ typedef struct {
  * @brief Function that controls all the lights in the elevator.
  * 
  * The function consist of a for loop that checks the order matrix and turns on the light is there is a order. It
- * also turns on the stop light when the stopp button is pushed. 
- */
+ * also turns on the stop light when the stop button is pushed. 
+ * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
+  */
 void elevator_lights(elevator_t *e);
 
 /**
  * @brief Function that turns off all the outside and inside order lights. 
+ * @param elevator_t *e, pointer to a struct that contains all the information important for running the elevator.
  */
 void elevator_clear_all_lights();
 

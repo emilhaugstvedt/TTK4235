@@ -11,7 +11,7 @@ void queue_handler_clear_queue(elevator_t *e){
     }
 }
 
-void queue_handler_update_queue_outside(elevator_t *e){
+void queue_handler_update_outside(elevator_t *e){
         if (hardware_read_order(0, HARDWARE_ORDER_UP)){
             e->queue[0][ORDER_UP] = 1;
         }
@@ -32,7 +32,7 @@ void queue_handler_update_queue_outside(elevator_t *e){
         }
       }
 
-  void queue_handler_update_queue_inside(elevator_t *e){
+  void queue_handler_update_inside(elevator_t *e){
           if (hardware_read_order(0, HARDWARE_ORDER_INSIDE)){
               e->queue[0][ORDER_INSIDE] = 1;
           }
@@ -152,7 +152,7 @@ int queue_handler_stop(elevator_t *e){
   }
 
   if (e->current_dir == HARDWARE_MOVEMENT_UP){
-    if (queue_handler_pass_floor(e) && !e->queue[e->current_floor][ORDER_UP]) {
+    if (queue_handler_pass_floor(e) && !(e->queue[e->current_floor][ORDER_UP] || e->queue[e->current_floor][ORDER_INSIDE])) {
         return FALSE;
     }
     else if (queue_handler_order_at_current_floor(e)){
@@ -161,7 +161,7 @@ int queue_handler_stop(elevator_t *e){
 }
 
   if (e->current_dir == HARDWARE_MOVEMENT_DOWN){
-    if (queue_handler_pass_floor(e) && !e->queue[e->current_floor][ORDER_DOWN]) {
+    if (queue_handler_pass_floor(e) && !(e->queue[e->current_floor][ORDER_DOWN] || e->queue[e->current_floor][ORDER_INSIDE])) {
       return FALSE;
     }
     else if (queue_handler_order_at_current_floor(e)){
